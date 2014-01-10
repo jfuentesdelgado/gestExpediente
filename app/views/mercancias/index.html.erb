@@ -1,0 +1,27 @@
+<h1>Listado mercancias</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Mostrar</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mercancias.each do |mercancia| %>
+      <tr>
+        <td><%= mercancia.nombre %></td>
+        <td><%= link_to 'Mostrar', mercancia %></td>
+        <td><%= link_to 'Editar', edit_mercancia_path(mercancia) %></td>
+        <td><%= link_to 'Eliminar', mercancia, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Crear nuevo Mercancia', new_mercancia_path %>

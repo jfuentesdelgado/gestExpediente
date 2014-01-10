@@ -1,0 +1,21 @@
+<%= form_for(@mercancia) do |f| %>
+  <% if @mercancia.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mercancia.errors.count, "error") %> prohibited this mercancia from being saved:</h2>
+
+      <ul>
+      <% @mercancia.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
