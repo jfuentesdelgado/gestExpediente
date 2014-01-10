@@ -1,0 +1,27 @@
+<h1>Listado relacions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Mostrar</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @relacions.each do |relacion| %>
+      <tr>
+        <td><%= relacion.nombre %></td>
+        <td><%= link_to 'Mostrar', relacion %></td>
+        <td><%= link_to 'Editar', edit_relacion_path(relacion) %></td>
+        <td><%= link_to 'Eliminar', relacion, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Crear nuevo Relacion', new_relacion_path %>

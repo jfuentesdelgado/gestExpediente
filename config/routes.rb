@@ -1,4 +1,6 @@
 GestExpediente::Application.routes.draw do
+  resources :relacions
+
   resources :mercancias
 
   resources :clientes

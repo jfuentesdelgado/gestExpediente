@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @relacion.nombre %>
+</p>
+
+<%= link_to 'Editar', edit_relacion_path(@relacion) %> |
+<%= link_to 'Volver', relacions_path %>

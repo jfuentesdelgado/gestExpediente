@@ -1,0 +1,24 @@
+<%= form_for(@relacion) do |f| %>
+  <% if @relacion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@relacion.errors.count, "error") %> prohibited this relacion from being saved:</h2>
+
+      <ul>
+      <% @relacion.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+    
+    <%= select_tag "relacion[cliente_id]", options_from_collection_for_select(@cliente, "id", "nombre") %>
+    <%= select_tag "relacion[mercancia_id]", options_from_collection_for_select(@mercancia, "id", "nombre") %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
