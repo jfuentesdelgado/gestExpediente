@@ -5,6 +5,6 @@ require File.expand_path('../application', __FILE__)
 GestExpediente::Application.initialize!
 
 # JFD Para que reconozca el plural de mercancia
-ActivoSupport::Inflector.inflections do |inflect|
+ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'mercancia', 'mercancias'
 end
