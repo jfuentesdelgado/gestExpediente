@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  numero: MyString
+  : 
+  tipo: MyString
+  fecha: 2014-01-13
+  hora: 2014-01-13 12:03:48
+  bultos: 1
+  matriculaCamion: MyString
+  matriculaRemolque: MyString
+  pesoneto: 1
+  pesobruto: 1
+  procedencia: MyString
+  conocimiento: MyString
+  precinto1: MyString
+  : 
+  precinto2: MyString
+  : 
+  precinto3: MyString
+  : 
+  flete: MyString
+  total: 1
+  estado: MyString
+
+two:
+  numero: MyString
+  : 
+  tipo: MyString
+  fecha: 2014-01-13
+  hora: 2014-01-13 12:03:48
+  bultos: 1
+  matriculaCamion: MyString
+  matriculaRemolque: MyString
+  pesoneto: 1
+  pesobruto: 1
+  procedencia: MyString
+  conocimiento: MyString
+  precinto1: MyString
+  : 
+  precinto2: MyString
+  : 
+  precinto3: MyString
+  : 
+  flete: MyString
+  total: 1
+  estado: MyString

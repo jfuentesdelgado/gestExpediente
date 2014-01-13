@@ -1,4 +1,6 @@
 GestExpediente::Application.routes.draw do
+  resources :registros
+
   resources :transitarios
 
   resources :barcos

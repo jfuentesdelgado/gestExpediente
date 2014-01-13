@@ -1,0 +1,1 @@
+json.extract! @registro, :id, :numero, :, :tipo, :fecha, :hora, :bultos, :matriculaCamion, :matriculaRemolque, :pesoneto, :pesobruto, :procedencia, :conocimiento, :precinto1, :, :precinto2, :, :precinto3, :, :flete, :total, :estado, :created_at, :updated_at
