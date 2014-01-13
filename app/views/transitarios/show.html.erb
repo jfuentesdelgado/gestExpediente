@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @transitario.nombre %>
+</p>
+
+<%= link_to 'Editar', edit_transitario_path(@transitario) %> |
+<%= link_to 'Volver', transitarios_path %>

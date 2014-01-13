@@ -1,0 +1,27 @@
+<h1>Listado barcos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Mostrar</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @barcos.each do |barco| %>
+      <tr>
+        <td><%= barco.nombre %></td>
+        <td><%= link_to 'Mostrar', barco %></td>
+        <td><%= link_to 'Editar', edit_barco_path(barco) %></td>
+        <td><%= link_to 'Eliminar', barco, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Crear nuevo Barco', new_barco_path %>
