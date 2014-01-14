@@ -15,10 +15,19 @@ class RegistrosController < ApplicationController
   # GET /registros/new
   def new
     @registro = Registro.new
+    @clientes = Cliente.all
+    @mercancias = Mercancia.all
+    @transitarios = Transitario.all
+    @barcos = Barco.all
   end
 
   # GET /registros/1/edit
   def edit
+    @clientes = Cliente.all
+    @mercancias = Mercancia.all
+    @transitarios = Transitario.all
+    @barcos = Barco.all
+
   end
 
   # POST /registros
@@ -28,9 +37,13 @@ class RegistrosController < ApplicationController
 
     respond_to do |format|
       if @registro.save
-        format.html { redirect_to @registro, notice: 'Registro was successfully created.' }
+        format.html { redirect_to @registro, notice: 'Registro creado correctamente.' }
         format.json { render action: 'show', status: :created, location: @registro }
       else
+        @clientes = Cliente.all
+        @mercancias = Mercancia.all
+        @transitarios = Transitario.all
+        @barcos = Barco.all
         format.html { render action: 'new' }
         format.json { render json: @registro.errors, status: :unprocessable_entity }
       end
@@ -42,7 +55,7 @@ class RegistrosController < ApplicationController
   def update
     respond_to do |format|
       if @registro.update(registro_params)
-        format.html { redirect_to @registro, notice: 'Registro was successfully updated.' }
+        format.html { redirect_to @registro, notice: 'Registro actualizado correctamente.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -69,6 +82,6 @@ class RegistrosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registro_params
-      params.require(:registro).permit(:numero, :, :tipo, :fecha, :hora, :bultos, :matriculaCamion, :matriculaRemolque, :pesoneto, :pesobruto, :procedencia, :conocimiento, :precinto1, :, :precinto2, :, :precinto3, :, :flete, :total, :estado)
+      params.require(:registro).permit(:cliente_id, :mercancia_id, :transitario_id, :barco_id, :numero, :tipo, :fecha, :hora, :bultos, :matriculaCamion, :matriculaRemolque, :pesoneto, :pesobruto, :procedencia, :conocimiento, :precinto1, :precinto2,  :precinto3,  :flete, :total, :estado)
     end
 end

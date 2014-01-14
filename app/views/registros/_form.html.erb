@@ -15,10 +15,7 @@
     <%= f.label :numero %><br>
     <%= f.text_field :numero %>
   </div>
-  <div class="field">
-    <%= f.label : %><br>
-    <%= f.text_field : %>
-  </div>
+  
   <div class="field">
     <%= f.label :tipo %><br>
     <%= f.text_field :tipo %>
@@ -32,8 +29,16 @@
     <%= f.time_select :hora %>
   </div>
   <div class="field">
+    <%= f.label 'Cliente' %><br>
+    <%= select_tag "registro[cliente_id]", options_from_collection_for_select(@clientes, "id", "nombre") %>
+  </div>
+  <div class="field">
     <%= f.label :bultos %><br>
     <%= f.number_field :bultos %>
+  </div>
+  <div class="field">
+    <%= f.label 'Mercancia' %><br>
+    <%= select_tag "registro[mercancia_id]", options_from_collection_for_select(@mercancias, "id", "nombre") %>
   </div>
   <div class="field">
     <%= f.label :matriculaCamion %><br>
@@ -56,6 +61,14 @@
     <%= f.text_field :procedencia %>
   </div>
   <div class="field">
+    <%= f.label 'Transitario' %><br>
+    <%= select_tag "registro[transitario_id]", options_from_collection_for_select(@transitarios, "id", "nombre") %>
+  </div>
+  <div class="field">
+    <%= f.label 'Barco' %><br>
+    <%= select_tag "registro[barco_id]", options_from_collection_for_select(@barcos, "id", "nombre") %>
+  </div>
+  <div class="field">
     <%= f.label :conocimiento %><br>
     <%= f.text_field :conocimiento %>
   </div>
@@ -63,26 +76,15 @@
     <%= f.label :precinto1 %><br>
     <%= f.text_field :precinto1 %>
   </div>
-  <div class="field">
-    <%= f.label : %><br>
-    <%= f.text_field : %>
-  </div>
-  <div class="field">
+   <div class="field">
     <%= f.label :precinto2 %><br>
     <%= f.text_field :precinto2 %>
-  </div>
-  <div class="field">
-    <%= f.label : %><br>
-    <%= f.text_field : %>
   </div>
   <div class="field">
     <%= f.label :precinto3 %><br>
     <%= f.text_field :precinto3 %>
   </div>
-  <div class="field">
-    <%= f.label : %><br>
-    <%= f.text_field : %>
-  </div>
+  
   <div class="field">
     <%= f.label :flete %><br>
     <%= f.text_field :flete %>

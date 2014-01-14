@@ -15,9 +15,9 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: pruRails
-  username: pruRails
-  password: pruRails
+  database: pruRailstest
+  username: pruRailstest
+  password: pruRailstest
   host: localhost
 
 production:

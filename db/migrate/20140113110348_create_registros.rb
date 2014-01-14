@@ -1,11 +1,7 @@
 class CreateRegistros < ActiveRecord::Migration
   def change
-    create_table :registros, 
-    {
-      :id   => false,
-      :primary_key => :numero 
-    }  do |t|
-      t.string :numero
+    create_table :registros do |t|
+      t.string :numero , null:false
       t.string :tipo, limit: 1, null: false 
       t.date :fecha, null: false
       t.time :hora, null: false

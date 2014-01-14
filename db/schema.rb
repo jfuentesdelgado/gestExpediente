@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20140113110348) do
     t.datetime "updated_at"
   end
 
-  create_table "registros", id: false, force: true do |t|
-    t.string   "numero"
+  create_table "registros", force: true do |t|
+    t.string   "numero",                      null: false
     t.string   "tipo",              limit: 1, null: false
     t.date     "fecha",                       null: false
     t.time     "hora",                        null: false
