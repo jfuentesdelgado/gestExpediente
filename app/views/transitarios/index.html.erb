@@ -1,0 +1,27 @@
+<h1>Listado transitarios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Mostrar</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transitarios.each do |transitario| %>
+      <tr>
+        <td><%= transitario.nombre %></td>
+        <td><%= link_to 'Mostrar', transitario %></td>
+        <td><%= link_to 'Editar', edit_transitario_path(transitario) %></td>
+        <td><%= link_to 'Eliminar', transitario, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Crear nuevo Transitario', new_transitario_path %>
