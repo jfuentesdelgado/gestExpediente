@@ -1,103 +1,156 @@
-<%= form_for(@registro) do |f| %>
-  <% if @registro.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@registro.errors.count, "error") %> prohibited this registro from being saved:</h2>
+<%= form_for(@registro, html: {role:"form", class:"form-horizontal"}) do |f| %>
+<% if @registro.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@registro.errors.count, "error") %> prohibited this registro from being saved:</h2>
 
-      <ul>
-      <% @registro.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <ul>
+    <% @registro.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<% #voy intentar usar una variable para el ancho de columna de las label respecto a los inputs
+anchoCol = 3
+%>
+<div class="col-md-4">
+
+  <div class="field form-group">
+    <%= f.label :numero , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.text_field :numero , class:"form-control"%>
     </div>
-  <% end %>
+  </div>
+  
+  <div class="field form-group">
+    <%= f.label :tipo , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.text_field :tipo, class:"form-control" %>
+  </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :fecha, class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.date_select :fecha, order:[:day,:month,:year],:use_month_names => [t(:jan), t(:feb), t(:mar), t(:apr), t(:may), t(:jun), t(:jul), t(:aug), t(:sep), t(:oct), t(:nov), t(:dec)], class:"form-control" %>
+  </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :hora , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.time_select :hora, class:"form-control" %>
+  </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label 'Cliente', class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= select_tag "registro[cliente_id]", options_from_collection_for_select(@clientes, "id", "nombre"), class:"form-control" %>
+  </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :bultos , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.number_field :bultos, class:"form-control" %>
+  </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label 'Mercancia' , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= select_tag "registro[mercancia_id]", options_from_collection_for_select(@mercancias, "id", "nombre"), class:"form-control" %>
+  </div>
+  </div>
+  </div>
+<div class="col-md-4">
+  <div class="field form-group">
+    <%= f.label :matriculaCamion ,"Matricual Camión", class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.text_field :matriculaCamion , class:"form-control"%>
+  </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :matriculaRemolque , "Matricual Remolque" ,class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.text_field :matriculaRemolque , class:"form-control"%>
+  </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :numero %><br>
-    <%= f.text_field :numero %>
+  <div class="field form-group">
+    <%= f.label :pesoneto , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.number_field :pesoneto , class:"form-control"%>
+  </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :pesobruto, class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.number_field :pesobruto , class:"form-control"%>
+  </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :procedencia , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.text_field :procedencia, class:"form-control" %>
+  </div>
   </div>
   
-  <div class="field">
-    <%= f.label :tipo %><br>
-    <%= f.text_field :tipo %>
+  <div class="field form-group">
+    <%= f.label 'Transitario', class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= select_tag "registro[transitario_id]", options_from_collection_for_select(@transitarios, "id", "nombre") , class:"form-control"%>
   </div>
-  <div class="field">
-    <%= f.label :fecha %><br>
-    <%= f.date_select :fecha %>
   </div>
-  <div class="field">
-    <%= f.label :hora %><br>
-    <%= f.time_select :hora %>
+</div>
+<div class="col-md-4">
+  <div class="field form-group">
+    <%= f.label 'Barco', class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= select_tag "registro[barco_id]", options_from_collection_for_select(@barcos, "id", "nombre"), class:"form-control" %>
   </div>
-  <div class="field">
-    <%= f.label 'Cliente' %><br>
-    <%= select_tag "registro[cliente_id]", options_from_collection_for_select(@clientes, "id", "nombre") %>
+</div>
+  <div class="field form-group">
+    <%= f.label :conocimiento , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.text_field :conocimiento, class:"form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :bultos %><br>
-    <%= f.number_field :bultos %>
   </div>
-  <div class="field">
-    <%= f.label 'Mercancia' %><br>
-    <%= select_tag "registro[mercancia_id]", options_from_collection_for_select(@mercancias, "id", "nombre") %>
+  <div class="field form-group">
+    <%= f.label :precinto1 , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.text_field :precinto1, class:"form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :matriculaCamion %><br>
-    <%= f.text_field :matriculaCamion %>
   </div>
-  <div class="field">
-    <%= f.label :matriculaRemolque %><br>
-    <%= f.text_field :matriculaRemolque %>
+  <div class="field form-group">
+    <%= f.label :precinto2 , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.text_field :precinto2, class:"form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :pesoneto %><br>
-    <%= f.number_field :pesoneto %>
   </div>
-  <div class="field">
-    <%= f.label :pesobruto %><br>
-    <%= f.number_field :pesobruto %>
+  <div class="field form-group">
+    <%= f.label :precinto3 , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.text_field :precinto3, class:"form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :procedencia %><br>
-    <%= f.text_field :procedencia %>
   </div>
-  <div class="field">
-    <%= f.label 'Transitario' %><br>
-    <%= select_tag "registro[transitario_id]", options_from_collection_for_select(@transitarios, "id", "nombre") %>
+  <div class="field form-group">
+    <%= f.label :flete , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.text_field :flete , class:"form-control"%>
   </div>
-  <div class="field">
-    <%= f.label 'Barco' %><br>
-    <%= select_tag "registro[barco_id]", options_from_collection_for_select(@barcos, "id", "nombre") %>
   </div>
-  <div class="field">
-    <%= f.label :conocimiento %><br>
-    <%= f.text_field :conocimiento %>
+  <div class="field form-group">
+    <%= f.label :total , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.number_field :total , class:"form-control"%>
   </div>
-  <div class="field">
-    <%= f.label :precinto1 %><br>
-    <%= f.text_field :precinto1 %>
   </div>
-   <div class="field">
-    <%= f.label :precinto2 %><br>
-    <%= f.text_field :precinto2 %>
+  <div class="field form-group">
+    <%= f.label :estado , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= f.text_field :estado, class:"form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :precinto3 %><br>
-    <%= f.text_field :precinto3 %>
   </div>
-  
-  <div class="field">
-    <%= f.label :flete %><br>
-    <%= f.text_field :flete %>
-  </div>
-  <div class="field">
-    <%= f.label :total %><br>
-    <%= f.number_field :total %>
-  </div>
-  <div class="field">
-    <%= f.label :estado %><br>
-    <%= f.text_field :estado %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
+<div class="actions">
+  <%= f.submit nil, {class:"btn btn-default"} %>
+</div>
 <% end %>
