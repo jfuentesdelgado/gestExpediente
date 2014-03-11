@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113110348) do
+ActiveRecord::Schema.define(version: 20140311182739) do
 
   create_table "barcos", force: true do |t|
     t.string   "nombre"
@@ -32,29 +32,30 @@ ActiveRecord::Schema.define(version: 20140113110348) do
   end
 
   create_table "registros", force: true do |t|
-    t.string   "numero",                      null: false
-    t.string   "tipo",              limit: 1, null: false
-    t.date     "fecha",                       null: false
-    t.time     "hora",                        null: false
-    t.integer  "cliente_id",                  null: false
-    t.integer  "bultos",                      null: false
-    t.integer  "mercancia_id",                null: false
-    t.string   "matriculaCamion",             null: false
-    t.string   "matriculaRemolque",           null: false
-    t.integer  "pesoneto",                    null: false
-    t.integer  "pesobruto",                   null: false
-    t.string   "procedencia",                 null: false
-    t.integer  "transitario_id",              null: false
-    t.integer  "barco_id",                    null: false
-    t.string   "conocimiento",                null: false
+    t.integer  "numero",            limit: 255, null: false
+    t.string   "tipo",              limit: 1,   null: false
+    t.date     "fecha",                         null: false
+    t.time     "hora",                          null: false
+    t.integer  "cliente_id",                    null: false
+    t.integer  "bultos",                        null: false
+    t.integer  "mercancia_id",                  null: false
+    t.string   "matriculaCamion",               null: false
+    t.string   "matriculaRemolque",             null: false
+    t.integer  "pesoneto",                      null: false
+    t.integer  "pesobruto",                     null: false
+    t.string   "procedencia",                   null: false
+    t.integer  "transitario_id",                null: false
+    t.integer  "barco_id",                      null: false
+    t.string   "conocimiento",                  null: false
     t.string   "precinto1"
     t.string   "precinto2"
     t.string   "precinto3"
-    t.string   "flete",                       null: false
-    t.integer  "total",                       null: false
-    t.string   "estado",                      null: false
+    t.string   "flete",                         null: false
+    t.integer  "total",                         null: false
+    t.string   "estado",                        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "year"
   end
 
   create_table "transitarios", force: true do |t|

@@ -65,5 +65,11 @@
 </table>
 
 <br>
-
+{controller: "people", action: "search"}, method: "get", class: "nifty_form")
+<%= form_tag new_registro_path , method: "get", class:"form-horizontal" do  %>
+<%= select_tag "year", options_for_select(2012..2050 , 2013), class:"form-control" %>
+<div class="actions">
+  <%= submit_tag nil, {class:"btn btn-default"} %>
+</div>
+<% end %>
 <%= link_to 'Crear nuevo Registro', new_registro_path, class:"btn btn-default" %>

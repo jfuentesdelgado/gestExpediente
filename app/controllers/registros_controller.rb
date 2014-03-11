@@ -14,7 +14,17 @@ class RegistrosController < ApplicationController
 
   # GET /registros/new
   def new
+    
+
     @registro = Registro.new
+    @registro.year = params['year']
+    registros=Registro.where( year: @registro.year)
+    if registros.empty?
+      numero=1
+    else
+      numero=registros.maximum("numero")+1
+    end
+    @registro.numero= numero
     @clientes = Cliente.all
     @mercancias = Mercancia.all
     @transitarios = Transitario.all

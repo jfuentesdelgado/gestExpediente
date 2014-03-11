@@ -46,6 +46,8 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'mysql2'
+# gem 'mysql2'
+
+gem 'better_errors'
 
 gem 'html5_validators'

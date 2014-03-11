@@ -16,10 +16,14 @@ anchoCol = 3
 %>
 <div class="col-md-4">
 
+
+
   <div class="field form-group">
     <%= f.label :numero , class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
-    <%= f.text_field :numero , class:"form-control"%>
+    <%= f.hidden_field  :numero, value:@registro.numero  %>
+    <%= f.hidden_field  :year, value:@registro.year  %>
+    <%= @registro.numero.to_s + "/" + @registro.year.to_s %>
     </div>
   </div>
   
