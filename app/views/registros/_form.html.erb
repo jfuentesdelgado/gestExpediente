@@ -23,14 +23,14 @@ anchoCol = 3
     <div class="col-md-<%= 12-anchoCol %>">
     <%= f.hidden_field  :numero, value:@registro.numero  %>
     <%= f.hidden_field  :year, value:@registro.year  %>
-    <%= @registro.numero.to_s + "/" + @registro.year.to_s %>
+    <%= @registro.mostrarNumero %>
     </div>
   </div>
   
   <div class="field form-group">
     <%= f.label :tipo , class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
-    <%= f.text_field :tipo, class:"form-control" %>
+     <%= f.select  :tipo, options_for_select([['T','T'], ['I','I'],['E','E'],['C','C']],'T'),{}, {class: "form-control"}  %>
   </div>
   </div>
   <div class="field form-group">
@@ -150,9 +150,15 @@ anchoCol = 3
   <div class="field form-group">
     <%= f.label :estado , class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
-    <%= f.text_field :estado, class:"form-control" %>
+    <%= f.select  :estado, options_for_select([['registro','registro'],['facturacion','facturacion'],['contabilidad','contabilidad'],['archivado','archivado'],['consulta admin','consulta admin'],['consulta aduana','consulta aduana']]),{}, {class: "form-control"}  %>
+    
   </div>
   </div>
+</div>
+
+<div>
+  <%= label_tag :DUAs , "DUAs", {class:"control-label col-md-#{anchoCol}"} %>
+  <%= text_field_tag :DUAs ,"" , class:"form-control" %>
 </div>
 <div class="actions">
   <%= f.submit nil, {class:"btn btn-default"} %>
