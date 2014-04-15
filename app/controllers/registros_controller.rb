@@ -4,7 +4,17 @@ class RegistrosController < ApplicationController
   # GET /registros
   # GET /registros.json
   def index
-    @registros = Registro.all
+   
+    
+    if session[:year]==nil  
+      fecha=Time.new  
+      session[:year]= fecha.year
+    end
+      
+
+    @year = session[:year]
+    @registros = Registro.where(year: @year)
+
   end
 
   # GET /registros/1
@@ -17,7 +27,7 @@ class RegistrosController < ApplicationController
     
 
     @registro = Registro.new
-    @registro.year = params['year']
+    @registro.year = session[:year]
     registros=Registro.where( year: @registro.year)
     if registros.empty?
       numero=1
@@ -37,6 +47,7 @@ class RegistrosController < ApplicationController
     @mercancias = Mercancia.all
     @transitarios = Transitario.all
     @barcos = Barco.all
+    @duas=@registro.duas
 
   end
 
@@ -44,6 +55,16 @@ class RegistrosController < ApplicationController
   # POST /registros.json
   def create
     @registro = Registro.new(registro_params)
+
+
+    duas=params[:duas]
+
+    @registro.addDuas(duas)
+
+    
+
+
+    
 
     respond_to do |format|
       if @registro.save
@@ -92,6 +113,6 @@ class RegistrosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registro_params
-      params.require(:registro).permit(:cliente_id, :mercancia_id, :transitario_id, :barco_id, :numero, :tipo, :fecha, :hora, :bultos, :matriculaCamion, :matriculaRemolque, :pesoneto, :pesobruto, :procedencia, :conocimiento, :precinto1, :precinto2,  :precinto3,  :flete, :total, :estado)
+      params.require(:registro).permit(:cliente_id, :mercancia_id, :transitario_id, :barco_id, :numero, :tipo, :fecha, :hora, :bultos, :matriculaCamion, :matriculaRemolque, :pesoneto, :pesobruto, :procedencia, :conocimiento, :precinto1, :precinto2,  :precinto3,  :flete, :total, :estado, :year)
     end
 end

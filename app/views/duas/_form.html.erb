@@ -1,0 +1,22 @@
+<%= form_for(@dua) do |f| %>
+  <% if @dua.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dua.errors.count, "error") %> prohibited this dua from being saved:</h2>
+
+      <ul>
+      <% @dua.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :dua %><br>
+    <%= f.text_field :dua %>
+  </div>
+  <%= f.hidden_field :registro_id %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -44,10 +44,10 @@ end
 
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
 
 # gem 'mysql2'
 
-gem 'better_errors'
+#gem 'better_errors'
 
-gem 'html5_validators'
+#gem 'html5_validators'

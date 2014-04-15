@@ -1,4 +1,11 @@
 GestExpediente::Application.routes.draw do
+  resources :duas
+
+  get "changeyear/change", as: :changeyear
+
+  get "changeyear/fixyear", as: :fixyear
+
+
   resources :registros
 
   resources :transitarios
@@ -8,6 +15,8 @@ GestExpediente::Application.routes.draw do
   resources :mercancias
 
   resources :clientes
+
+  #get 'changeyear'=> 'changeyear#change', as: changeyear
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
