@@ -158,55 +158,13 @@ anchoCol = 3
 
 <%= f.hidden_field :year %>
 
-<div>
-DUA
-<input id="textDUA" type="text" class="form-control">
-<span id="buttonDUA">Añadir</span>
-
-<ul id="listDUA">
-
-<%@duas.each do |d|%>
-  <li>
-  <%= d.dua %>
-  <span class='quitarDUA' onclick='quitarLI(event);'>-eliminar-</span>
-  <input type='hidden' name='duas[]' value="<%= d.dua %>"></li> 
-
-<%end%>
-
-
-</ul>
-
-</div>
-<script type="text/javascript">
-function quitarLI(e){
-     //e.target.parent().remove();
-      $(e.target).parent().remove();
-    }
-
-
-  // $(document).on("ready", function(){
-    $(document).ready(function(){
-    function anadirLI(){
-      $("#textDUA").value
-      var li=$("<li>"+$("#textDUA").val()+"<span class='quitarDUA' onclick='quitarLI(event);'>-eliminar-</span><input type='hidden' name='duas[]' value='"+$("#textDUA").val()+"'></li>");
-      $("#listDUA").append(li);
-      $("#textDUA").val(undefined);
-    }
-
-    $("#buttonDUA").click(function(eventObject){
-      eventObject.preventDefault();
-      anadirLI();
-
-    });
-  
-  });
-</script>
-
+<%= render partial:'subform', locals: { entidad:@duas , titulo: 'DUA', campValor:'dua' } %>
 
 <div class="actions">
   <%= f.submit nil, {class:"btn btn-default"} %>
 </div>
 <% end %>
+
 
 <%#= render 'duas/list' %>
 <%#= render 'duas/form' %>

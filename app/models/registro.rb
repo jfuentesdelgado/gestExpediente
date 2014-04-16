@@ -25,7 +25,6 @@ class Registro < ActiveRecord::Base
 	end
 
 	def addDuas duas
-
 		duas.each do |d|
 			if (self.duas.where(dua: d).empty?)
 				dua= Dua.new
@@ -33,7 +32,29 @@ class Registro < ActiveRecord::Base
 				self.duas << dua
 			end
 		end
+	end
 
+	def updateDuas duas
+		 
+		duasbd=self.duas
+
+		duasbd.each do |d|
+			 #comprueba se existe el elemento d en el array duas
+			 if duas.include?(d.dua)
+			 	#si existe, eliminarlo del array
+			 	duas.delete(d.dua)
+			 else
+			 	#si no, eliminarlo de d
+			 	d.destroy
+			 end
+
+		end	 
+		#añadir los elementos que quedan de duas a d 
+		duas.each do |f|
+				dua= Dua.new
+				dua.dua = f
+				self.duas << dua
+		end
 
 	end
 
@@ -48,7 +69,7 @@ class Registro < ActiveRecord::Base
 	    self.matriculaRemolque=0
 	    self.pesoneto=0
 	    self.pesobruto=0
-	    self.procedencia=""
+	    self.procedencia=" "
 	    self.conocimiento=0
 	    self.precinto1=0
 	    self.precinto2=0

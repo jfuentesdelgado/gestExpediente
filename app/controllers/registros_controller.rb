@@ -24,15 +24,12 @@ class RegistrosController < ApplicationController
 
   # GET /registros/new
   def new
-    
-
-
     @registro = Registro.new
    
     @registro.year = session[:year]
     @registro.valoresDefecto
     
-
+    @duas=@registro.duas
     @clientes = Cliente.all
     @mercancias = Mercancia.all
     @transitarios = Transitario.all
@@ -55,14 +52,11 @@ class RegistrosController < ApplicationController
     @registro = Registro.new(registro_params)
 
 
-    duas=params[:duas]
+    duas=params[:dua]
+    # debugger
 
-    @registro.addDuas(duas)
+    @registro.addDuas(duas) if duas
 
-    
-
-
-    
 
     respond_to do |format|
       if @registro.save
@@ -82,6 +76,10 @@ class RegistrosController < ApplicationController
   # PATCH/PUT /registros/1
   # PATCH/PUT /registros/1.json
   def update
+
+    duas=params[:dua]
+    @registro.updateDuas(duas)
+
     respond_to do |format|
       if @registro.update(registro_params)
         format.html { redirect_to @registro, notice: 'Registro actualizado correctamente.' }

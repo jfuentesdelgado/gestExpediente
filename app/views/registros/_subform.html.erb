@@ -1,0 +1,66 @@
+
+<br/>
+<%=campValor%>
+
+<div>
+
+<%=titulo%>
+<input id="text<%=campValor%>" type="text" class="form-control">
+<!-- <button id="buttonDUA">Añadir</button> -->
+<span id="button<%=campValor%>">Añadir</span>
+
+<ul id="list<%=campValor%>">
+
+<%if entidad
+  entidad.each do |d|
+    %>
+    <li>
+    <%= d[campValor] %>
+    <span class='quitar<%=campValor%>' onclick='quitarLI(event);'>-eliminar-</span>
+    <input type='hidden' name='<%=campValor%>[]' value="<%= d[campValor] %>"></li> 
+  <%
+  end
+end%>
+
+
+</ul>
+
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+function quitarLI(e){
+     //e.target.parent().remove();
+      $(e.target).parent().remove();
+    }
+
+
+  // $(document).on("ready", function(){
+    $(document).ready(function(){
+    function anadirLI<%=campValor%>(){
+      $("#text<%=campValor%>").value
+      var li=$("<li>"+$("#text<%=campValor%>").val()+"<span class='quitar<%=campValor%>' onclick='quitarLI(event);'>-eliminar-</span><input type='hidden' name='<%=campValor%>[]' value='"+$("#text<%=campValor%>").val()+"'></li>");
+      $("#list<%=campValor%>").append(li);
+      $("#text<%=campValor%>").val(undefined);
+    }
+
+     $('#text<%=campValor%>').keypress(function(event){  
+       var keycode = (event.keyCode ? event.keyCode : event.which);  
+      if(keycode == '13'){  
+            event.preventDefault();
+            anadirLI<%=campValor%>(); 
+      }   
+ });
+
+    $("#button<%=campValor%>").click(function(eventObject){
+      eventObject.preventDefault();
+      anadirLI<%=campValor%>();
+
+    });
+  
+  });
+</script>
