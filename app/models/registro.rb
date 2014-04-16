@@ -20,6 +20,9 @@ class Registro < ActiveRecord::Base
 	validates :tipo, inclusion: { in: %w(I T E C), message: "%{value} no es un tipo valido. Tipos validos I T E C"}
 	validates :estado, inclusion: { in: %w(registro facturacion contabilidad archivado consulta), message: "%{value} no es un estado valido. Estados validos registro facturacion contabilidad archivado consulta"}
 
+	def mostrarNumero
+		 self.numero.to_s + "/" + self.year.to_s[2..4]
+	end
 
 	def addDuas duas
 
@@ -33,5 +36,27 @@ class Registro < ActiveRecord::Base
 
 
 	end
+
+
+	def valoresDefecto()
+		
+	    registros=Registro.where( year: self.year)
+	    self.numero = registros.empty? ? 1 : registros.maximum("numero")+1
+		
+	    self.bultos= 0
+	    self.matriculaCamion=0
+	    self.matriculaRemolque=0
+	    self.pesoneto=0
+	    self.pesobruto=0
+	    self.procedencia=""
+	    self.conocimiento=0
+	    self.precinto1=0
+	    self.precinto2=0
+	    self.precinto3=0
+	    self.flete=0
+	    self.total=0
+	end
+
+	
 
 end

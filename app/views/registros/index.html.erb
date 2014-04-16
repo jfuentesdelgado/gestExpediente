@@ -35,7 +35,7 @@
   <tbody>
     <% @registros.each do |registro| %>
       <tr>
-        <td><%= registro.numero %></td>
+        <td><%= registro.mostrarNumero %></td>
        
         <td><%= registro.tipo %></td>
         <td><%= registro.fecha %></td>
@@ -67,4 +67,6 @@
 <br>
 
 
+
 <%= link_to 'Crear nuevo Registro', new_registro_path, class:"btn btn-default" %>
+

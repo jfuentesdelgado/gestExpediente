@@ -26,15 +26,13 @@ class RegistrosController < ApplicationController
   def new
     
 
+
     @registro = Registro.new
+   
     @registro.year = session[:year]
-    registros=Registro.where( year: @registro.year)
-    if registros.empty?
-      numero=1
-    else
-      numero=registros.maximum("numero")+1
-    end
-    @registro.numero= numero
+    @registro.valoresDefecto
+    
+
     @clientes = Cliente.all
     @mercancias = Mercancia.all
     @transitarios = Transitario.all
@@ -113,6 +111,10 @@ class RegistrosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registro_params
+<<<<<<< HEAD
       params.require(:registro).permit(:cliente_id, :mercancia_id, :transitario_id, :barco_id, :numero, :tipo, :fecha, :hora, :bultos, :matriculaCamion, :matriculaRemolque, :pesoneto, :pesobruto, :procedencia, :conocimiento, :precinto1, :precinto2,  :precinto3,  :flete, :total, :estado, :year)
+=======
+      params.require(:registro).permit(:year, :cliente_id, :mercancia_id, :transitario_id, :barco_id, :numero, :tipo, :fecha, :hora, :bultos, :matriculaCamion, :matriculaRemolque, :pesoneto, :pesobruto, :procedencia, :conocimiento, :precinto1, :precinto2,  :precinto3,  :flete, :total, :estado)
+>>>>>>> ac48652c1e93964c2e3573873d434f9ab7bfb8a0
     end
 end
