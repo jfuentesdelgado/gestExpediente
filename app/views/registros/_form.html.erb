@@ -158,7 +158,9 @@ anchoCol = 3
 
 <%= f.hidden_field :year %>
 
-<%= render partial:'subform', locals: { entidad:@duas , titulo: 'DUA', campValor:'dua' } %>
+<%= render partial:'subform', locals: { entidad:@registro.duas , titulo: 'DUA', campValor:'dua' } %>
+
+<%= render partial:'subform', locals: { entidad:@registro.expedientes , titulo: 'EXPEDIENTES', campValor:'numero' } %>
 
 <div class="actions">
   <%= f.submit nil, {class:"btn btn-default"} %>

@@ -85,5 +85,30 @@
   <%= @registro.estado %>
 </p>
 
+<%= render 'duas/list' %>
+<%= render 'expedientes/list' %>
+<% #voy intentar usar una variable para el ancho de columna de las label respecto a los inputs
+anchoCol = 3
+%>
+<%#= form_tag "/tickets" , method: "get" do %>
+<%= form_tag "/registros/updateEstado", method: "post" do %>
+<%#= form_for(@registro, html: {role:"form", class:"form-horizontal"}) do |f| %>
+
+
+ <div class="field form-group">
+     <%#= label_tag :estado , class:"control-label col-md-#{anchoCol}"%>
+    <div class="col-md-<%= 12-anchoCol %>">
+    <%= select_tag  "estado", options_for_select([['registro','registro'],['facturacion','facturacion'],['contabilidad','contabilidad'],['archivado','archivado'],['consulta admin','consulta admin'],['consulta aduana','consulta aduana']]), {class: "form-control"}  %>
+   
+    <%= hidden_field_tag 'registroid', @registro.id %>
+  </div>
+
+
+
+<div class="actions">
+  <%= submit_tag nil, {class:"btn btn-default"} %>
+</div>
+<% end %>
+
 <%= link_to 'Editar', edit_registro_path(@registro) %> |
 <%= link_to 'Volver', registros_path %>

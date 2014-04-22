@@ -2,6 +2,8 @@ class Registro < ActiveRecord::Base
 	
 	has_many :duas
 
+	has_many :expedientes
+
 	belongs_to :cliente
 	belongs_to :mercancia
 	belongs_to :transitario
@@ -34,29 +36,79 @@ class Registro < ActiveRecord::Base
 		end
 	end
 
+	def addExpedientes expedientes
+		expedientes.each do |d|
+			if (self.expedientes.where(expediente: d).empty?)
+				expediente= Expediente.new
+				expediente.numero = d
+				self.expedientes << expediente
+			end
+		end
+	end
+
+	def updateEstado estado
+		debugger
+		self.estado=estado		
+	end
+
 	def updateDuas duas
-		 
+		 # debugger
 		duasbd=self.duas
 
-		duasbd.each do |d|
-			 #comprueba se existe el elemento d en el array duas
-			 if duas.include?(d.dua)
-			 	#si existe, eliminarlo del array
-			 	duas.delete(d.dua)
-			 else
-			 	#si no, eliminarlo de d
-			 	d.destroy
-			 end
+		if duas==nil 
+			duasbd.destroy_all
+		else
+			duasbd.each do |d|
+				 #comprueba se existe el elemento d en el array duas
+				 if duas.include?(d.dua)
+				 	#si existe, eliminarlo del array
+				 	duas.delete(d.dua)
+				 else
+				 	#si no, eliminarlo de d
+				 	d.destroy
+				 end
+			end	 
+			#añadir los elementos que quedan de duas a d 
+			if not(duas==nil)
+				duas.each do |f|
+						dua= Dua.new
+						dua.dua = f
+						self.duas << dua
+				end
+			end
+		end
+	end
 
-		end	 
-		#añadir los elementos que quedan de duas a d 
-		duas.each do |f|
-				dua= Dua.new
-				dua.dua = f
-				self.duas << dua
+
+	def updateExpedientes expedientes
+		 
+		expedientebd=self.expedientes
+
+		if expedientes==nil
+			expedientebd.destroy_all
+		else
+			expedientebd.each do |d|
+				 #comprueba se existe el elemento d en el array duas
+				 if expedientes.include?(d.numero)
+				 	#si existe, eliminarlo del array
+				 	expedientes.delete(d.numero)
+				 else
+				 	#si no, eliminarlo de d
+				 	d.destroy
+				 end
+			end
+			#añadir los elementos que quedan de duas a d 
+			if not(expedientes==nil)
+				expedientes.each do |f|
+						expediente= Expediente.new
+						expediente.numero = f
+						self.expedientes << expediente
+				end
+			end
 		end
 
 	end
+
 
 
 	def valoresDefecto()

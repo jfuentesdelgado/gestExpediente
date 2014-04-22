@@ -1,9 +1,13 @@
 GestExpediente::Application.routes.draw do
+  resources :expedientes
+
   resources :duas
 
   get "changeyear/change", as: :changeyear
 
   get "changeyear/fixyear", as: :fixyear
+
+  post "registros/updateEstado", as: :updateEstado
 
 
   resources :registros

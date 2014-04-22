@@ -4,10 +4,6 @@
   <thead>
     <tr>
       <th>Dua</th>
-      <th>Belongs to</th>
-      <th>Mostrar</th>
-      <th>Editar</th>
-      <th>Eliminar</th>
     </tr>
   </thead>
 
@@ -15,10 +11,6 @@
     <% @registro.duas.each do |dua| %>
       <tr>
         <td><%= dua.dua %></td>
-        <td><%= dua.belongs_to %></td>
-        <td><%= link_to 'Mostrar', dua %></td>
-        <td><%= link_to 'Editar', edit_dua_path(dua) %></td>
-        <td><%= link_to 'Eliminar', dua, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>

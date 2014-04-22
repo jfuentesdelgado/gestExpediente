@@ -1,0 +1,20 @@
+<h1>Listado expedientes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Expediente</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @registro.expedientes.each do |expediente| %>
+      <tr>
+        <td><%= expediente.numero %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

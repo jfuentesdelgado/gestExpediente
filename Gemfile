@@ -46,6 +46,8 @@ end
 # Use debugger
 gem 'debugger', group: [:development, :test]
 
+gem 'kaminari'
+
 # gem 'mysql2'
 
 #gem 'better_errors'

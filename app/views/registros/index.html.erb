@@ -1,6 +1,8 @@
 <div class="page-header">
 <h1>Listado registros</h1>
 </div>
+<%= paginate @registros %>  
+<br/>
 <%= @year %>
 <table class="table table-border">
   <thead>
@@ -61,6 +63,7 @@
         <td><%= link_to 'Eliminar', registro, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
       </tr>
     <% end %>
+    
   </tbody>
 </table>
 

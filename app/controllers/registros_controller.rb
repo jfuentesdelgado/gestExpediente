@@ -13,7 +13,7 @@ class RegistrosController < ApplicationController
       
 
     @year = session[:year]
-    @registros = Registro.where(year: @year)
+    @registros = Registro.where(year: @year).order('numero desc').page(params[:page]).per(5)
 
   end
 
@@ -29,7 +29,8 @@ class RegistrosController < ApplicationController
     @registro.year = session[:year]
     @registro.valoresDefecto
     
-    @duas=@registro.duas
+    #@duas=@registro.duas
+
     @clientes = Cliente.all
     @mercancias = Mercancia.all
     @transitarios = Transitario.all
@@ -42,7 +43,7 @@ class RegistrosController < ApplicationController
     @mercancias = Mercancia.all
     @transitarios = Transitario.all
     @barcos = Barco.all
-    @duas=@registro.duas
+    #@duas=@registro.duas
 
   end
 
@@ -56,6 +57,12 @@ class RegistrosController < ApplicationController
     # debugger
 
     @registro.addDuas(duas) if duas
+
+    expedientes=params[:numero]
+    # debugger
+
+    @registro.addExpedientes(expedientes) if expedientes
+
 
 
     respond_to do |format|
@@ -73,12 +80,24 @@ class RegistrosController < ApplicationController
     end
   end
 
+  def updateEstado
+    debugger
+ 
+    registro=Registro.find(params[:registroid])
+    registro.estado= params[:estado]
+    registro.save
+    redirect_to registro
+  end
+
   # PATCH/PUT /registros/1
   # PATCH/PUT /registros/1.json
   def update
 
     duas=params[:dua]
     @registro.updateDuas(duas)
+
+    expedientes=params[:numero]
+    @registro.updateExpedientes(expedientes)
 
     respond_to do |format|
       if @registro.update(registro_params)
