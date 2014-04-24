@@ -81,10 +81,10 @@ class RegistrosController < ApplicationController
   end
 
   def updateEstado
-    debugger
+   
  
     registro=Registro.find(params[:registroid])
-    registro.estado= params[:estado]
+    registro.updateEstado(params[:estado])
     registro.save
     redirect_to registro
   end

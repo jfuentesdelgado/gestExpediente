@@ -2,6 +2,8 @@ class Registro < ActiveRecord::Base
 	
 	has_many :duas
 
+	has_many :histories
+
 	has_many :expedientes
 
 	belongs_to :cliente
@@ -20,7 +22,7 @@ class Registro < ActiveRecord::Base
 	
 	validates :bultos, :pesobruto, :pesoneto, :total, numericality: {only_integer: true}
 	validates :tipo, inclusion: { in: %w(I T E C), message: "%{value} no es un tipo valido. Tipos validos I T E C"}
-	validates :estado, inclusion: { in: %w(registro facturacion contabilidad archivado consulta), message: "%{value} no es un estado valido. Estados validos registro facturacion contabilidad archivado consulta"}
+	validates :estado, inclusion: { in: ['registro','facturacion','contabilidad','archivado','consulta admin','consulta aduana'], message: "%{value} no es un estado valido. Estados validos  'registro','facturacion','contabilidad','archivado','consulta admin','consulta aduana'"}
 
 	def mostrarNumero
 		 self.numero.to_s + "/" + self.year.to_s[2..4]
@@ -47,7 +49,17 @@ class Registro < ActiveRecord::Base
 	end
 
 	def updateEstado estado
-		debugger
+		
+		# debugger
+
+		historico=History.new
+		historico.date= Time.new
+		historico.original_state=self.estado
+		historico.final_state=estado
+		
+		self.histories << historico
+		historico.save
+
 		self.estado=estado		
 	end
 

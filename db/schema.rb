@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422155609) do
+ActiveRecord::Schema.define(version: 20140424152254) do
 
   create_table "barcos", force: true do |t|
     t.string   "nombre"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20140422155609) do
   create_table "expedientes", force: true do |t|
     t.string   "numero"
     t.integer  "registro_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "histories", force: true do |t|
+    t.date     "date"
+    t.string   "original_state"
+    t.string   "final_state"
+    t.integer  "registro_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

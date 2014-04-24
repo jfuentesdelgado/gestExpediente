@@ -87,6 +87,10 @@
 
 <%= render 'duas/list' %>
 <%= render 'expedientes/list' %>
+
+
+<h2>Cambiar el estado del registro</h2>
+
 <% #voy intentar usar una variable para el ancho de columna de las label respecto a los inputs
 anchoCol = 3
 %>
@@ -98,7 +102,7 @@ anchoCol = 3
  <div class="field form-group">
      <%#= label_tag :estado , class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
-    <%= select_tag  "estado", options_for_select([['registro','registro'],['facturacion','facturacion'],['contabilidad','contabilidad'],['archivado','archivado'],['consulta admin','consulta admin'],['consulta aduana','consulta aduana']]), {class: "form-control"}  %>
+    <%= select_tag  "estado", options_for_select([['registro','registro'],['facturacion','facturacion'],['contabilidad','contabilidad'],['archivado','archivado'],['consulta admin','consulta admin'],['consulta aduana','consulta aduana']],@registro.estado), {class: "form-control"} %>
    
     <%= hidden_field_tag 'registroid', @registro.id %>
   </div>
@@ -109,6 +113,27 @@ anchoCol = 3
   <%= submit_tag nil, {class:"btn btn-default"} %>
 </div>
 <% end %>
+
+<div>
+  <h2>Historico de cambios de estado</h2>
+    <% if not(@registro.histories)%>
+
+      <span>No ha habido cambios.<span>
+    <% else %>
+        <table>
+        <tr><th>Fecha</th><th>Original</th><th>Final</th></tr>
+        <% @registro.histories.each do |h|%>
+
+          <tr>
+            <td><%= h.date %></td><td><%= h.original_state %></td><td><%= h.final_state %></td>
+          </tr>
+
+        <% end %>
+      </table>
+    <% end %>
+
+
+</div>
 
 <%= link_to 'Editar', edit_registro_path(@registro) %> |
 <%= link_to 'Volver', registros_path %>
