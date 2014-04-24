@@ -142,6 +142,53 @@ class Registro < ActiveRecord::Base
 	    self.total=0
 	end
 
-	
+	filterrific(
+
+		:filter_names => [
+    		:search_procedencia
+    	]
+  # :default_settings => { :sorted_by => 'created_at_desc' },
+  # :filter_names => [
+  #   :search_query,
+  #   :sorted_by,
+  #   :with_country_id,
+  #   :with_created_at_gte
+  # ]
+)
+# define ActiveRecord scopes for
+# :search_query, :sorted_by, :with_country_id, and :with_created_at_gte
+
+
+scope :search_procedencia, lambda { |proc|
+  where(:procedencia => [*proc])
+}
+
+# scope :search_procedencia, lambda { |query|
+#   # Searches the students table on the 'first_name' and 'last_name' columns.
+#   # Matches using LIKE, automatically appends '%' to each term.
+#   # LIKE is case INsensitive with MySQL, however it is case
+#   # sensitive with PostGreSQL. To make it work in both worlds,
+#   # we downcase everything.
+#   return nil  if query.blank?
+
+#   # condition query, parse into individual keywords
+#   terms = query.downcase.split(/\s+/)
+
+#   # replace "*" with "%" for wildcard searches,
+#   # append '%', remove duplicate '%'s
+#   terms = terms.map { |e|
+#     (e.gsub('*', '%') + '%').gsub(/%+/, '%')
+#   }
+#   # configure number of OR conditions for provision
+#   # of interpolation arguments. Adjust this if you
+#   # change the number of OR conditions.
+#   num_or_conds = 2
+#   where(
+#     terms.map { |term|
+#       "(LOWER(registros.procedencia) LIKE ? OR LOWER(registros.procedencia) LIKE ?)"
+#     }.join(' AND '),
+#     *terms.map { |e| [e] * num_or_conds }.flatten
+#   )
+# }
 
 end

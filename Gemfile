@@ -48,6 +48,8 @@ gem 'debugger', group: [:development, :test]
 
 gem 'kaminari'
 
+gem 'filterrific'
+
 # gem 'mysql2'
 
 #gem 'better_errors'

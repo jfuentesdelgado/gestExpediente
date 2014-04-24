@@ -4,17 +4,34 @@ class RegistrosController < ApplicationController
   # GET /registros
   # GET /registros.json
   def index
-   
-    
-    if session[:year]==nil  
-      fecha=Time.new  
-      session[:year]= fecha.year
+
+
+     @filterrific = Filterrific.new(Registro, params[:filterrific] || session[:filterrific_registros])
+      # @registros = Registro.filterrific_find(@filterrific).page(params[:page])
+      @registros = Registro.filterrific_find(@filterrific).page(params[:page]).per(5)
+     session[:filterrific_registros] = @filterrific.to_hash
+
+# Respond to html for initial page load and to js for AJAX filter updates.
+    respond_to do |format|
+      format.html
+      format.js
     end
-      
 
-    @year = session[:year]
-    @registros = Registro.where(year: @year).order('numero desc').page(params[:page]).per(5)
+    
+    # if session[:year]==nil  
+    #   fecha=Time.new  
+    #   session[:year]= fecha.year
+    # end
+    # @year = session[:year]
+    # @registros = Registro.where(year: @year).order('numero desc').page(params[:page]).per(5)
 
+  end
+
+  def reset_filterrific
+    # Clear session persistence
+    session[:filterrific_registros] = nil
+    # Redirect back to the index action for default filter settings.
+    redirect_to :action => :index
   end
 
   # GET /registros/1

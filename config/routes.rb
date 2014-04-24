@@ -1,4 +1,6 @@
 GestExpediente::Application.routes.draw do
+
+
   resources :expedientes
 
   resources :duas
@@ -10,7 +12,9 @@ GestExpediente::Application.routes.draw do
   post "registros/updateEstado", as: :updateEstado
 
 
-  resources :registros
+  resources :registros do
+   get :reset_filterrific, :on => :collection
+  end
 
   resources :transitarios
 
