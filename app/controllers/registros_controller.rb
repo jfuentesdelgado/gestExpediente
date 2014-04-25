@@ -5,7 +5,6 @@ class RegistrosController < ApplicationController
   # GET /registros.json
   def index
 
-
      @filterrific = Filterrific.new(Registro, params[:filterrific] || session[:filterrific_registros])
       # @registros = Registro.filterrific_find(@filterrific).page(params[:page])
       @registros = Registro.filterrific_find(@filterrific).page(params[:page]).per(5)
@@ -98,8 +97,6 @@ class RegistrosController < ApplicationController
   end
 
   def updateEstado
-   
- 
     registro=Registro.find(params[:registroid])
     registro.updateEstado(params[:estado])
     registro.save

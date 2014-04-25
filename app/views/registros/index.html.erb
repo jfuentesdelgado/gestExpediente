@@ -1,8 +1,64 @@
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker({ dateFormat: "yy-mm-dd", firstDay: 1 });
+  });
+</script>
+
+
 <%= form_for @filterrific do |f| %>
   <div>
-    Search
+  Desde
+  <%=
+  
+
+  # campos = ["numero","tipo", "fecha", "cliente_id","bultos",           
+  #   "mercancia_id",     
+  #   "matriculaCamion",  
+  #   "matriculaRemolque", 
+  #   "pesoneto",          
+  #   "pesobruto",         
+  #   "procedencia",       
+  #   "transitario_id",    
+  #   "barco_id",          
+  #   "conocimiento",      
+  #   "precinto1",
+  #   "precinto2",
+  #   "precinto3",
+  #   "flete",             
+  #   "total",             
+  #   "estado",            
+  #   "year"]
+
+
+    f.text_field(:date_gte, :class => 'filterrific-periodically-observed datepicker')
+%>
+  hasta
+  <%=
+    f.text_field(:date_lte, :class => 'filterrific-periodically-observed datepicker')
+
+
+
+
+    Registro.campos_filtro.each do |camp|
+          %>
+          <div class="<%= camp[0] %> campoFiltro">
+                <%= camp[0]%>
+                <%= 
+
+                search = "search_"+camp[0] 
+                  f.text_field(
+                    search,
+                    :class => 'filterrific-periodically-observed'
+                  )
+            %>   
+          </div>
+    <%end%>
+
+
+
     <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-    <%= f.text_field(
+    <%#= f.text_field(
       :search_procedencia,
       :class => 'filterrific-periodically-observed'
     ) %>

@@ -142,11 +142,49 @@ class Registro < ActiveRecord::Base
 	    self.total=0
 	end
 
+	def Registro.campos_filtro
+		@campos_filtro
+	end
+
+
+
+	#array nombre de campo y especifica si el tipo es numero o texto
+	@campos_filtro= [
+		["numero","number"],
+		["tipo","text"],
+		#["fecha","date"],
+		["cliente_id","text"],
+		["bultos","number"],
+	    ["mercancia_id","text"],
+	    ["matriculaCamion","text"],
+	    ["matriculaRemolque","text"],
+	    ["pesoneto","number"],
+	    ["pesobruto","number"],
+	    ["procedencia","text"],
+	    ["transitario_id","text"],
+	    ["barco_id","text"],
+	    ["conocimiento","text"],
+	    ["precinto1","text"],
+	    ["precinto2","text"],
+	    ["precinto3","text"],
+	    ["flete","text"],
+	    ["total","number"],
+	    ["estado","text"],
+	    ["year","number"]
+	]
+
+
+    campos_search =[]
+
+    @campos_filtro.each do |camp|
+    	campos_search << "search_"+camp [0]
+    end
+
+    campos_search << "date_gte"
+    campos_search << "date_lte"
 	filterrific(
 
-		:filter_names => [
-    		:search_procedencia
-    	]
+		:filter_names => campos_search
   # :default_settings => { :sorted_by => 'created_at_desc' },
   # :filter_names => [
   #   :search_query,
@@ -159,9 +197,56 @@ class Registro < ActiveRecord::Base
 # :search_query, :sorted_by, :with_country_id, and :with_created_at_gte
 
 
-scope :search_procedencia, lambda { |proc|
-  where(:procedencia => [*proc])
+
+
+
+campos_filtro.each do |camp|
+
+	scope "search_"+camp[0],  ->(proc) {
+		if camp[1]=="text"
+			proc = "%"+proc+"%"
+	 		where(camp[0]+" Like ?", proc) 
+	 	else 
+	 		#en caso contrario es numero
+	 			where(camp[0]+" = ?", proc) 
+	 		
+	 	end
+ 	}
+end
+
+
+
+
+
+
+
+
+
+scope :date_gte, ->(proc){
+
+	 where("fecha >= ?", proc) 
+
 }
+
+scope :date_lte, ->(proc){
+
+	 where("fecha <= ?", proc) 
+
+}
+# scope :search_procedencia, ->(proc) { where("procedencia Like %?", proc) }
+
+# scope :search_procedencia,  ->(proc) {
+
+# 	proc = "%"+proc+"%"
+#  where("procedencia Like ?", proc) 
+# }
+
+# scope :search_procedencia, lambda {|proc|
+
+# 	proc = "%"+proc+"%"
+#  where("procedencia Like ?", proc) 
+# }
+
 
 # scope :search_procedencia, lambda { |query|
 #   # Searches the students table on the 'first_name' and 'last_name' columns.
