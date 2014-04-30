@@ -13,6 +13,7 @@
       <th>Tipo</th>
       <th>Fecha</th>
       <th>Hora</th>
+      <th>Cliente</th>
       <th>Bultos</th>
       <th>Matriculacamion</th>
       <th>Matricularemolque</th>
@@ -43,6 +44,7 @@
         <td><%= registro.tipo %></td>
         <td><%= registro.fecha %></td>
         <td><%= registro.hora %></td>
+        <td><%= registro.cliente.nombre %></td>
         <td><%= registro.bultos %></td>
         <td><%= registro.matriculaCamion %></td>
         <td><%= registro.matriculaRemolque %></td>

@@ -1,7 +1,7 @@
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script>
   $(function() {
-    $( ".datepicker" ).datepicker({ dateFormat: "yy-mm-dd", firstDay: 1 });
+    $( ".datepicker" ).datepicker({ dateFormat: "dd/mm/yy", firstDay: 1 });
   });
 </script>
 
@@ -9,49 +9,38 @@
 <%= form_for @filterrific do |f| %>
   <div>
   Desde
-  <%=
+  <%#= f.date_select :date_gte %>
+  <%=f.text_field(:date_gte, :class => 'filterrific-periodically-observed datepicker')%>
+  hasta
+  <%= f.text_field(:date_lte, :class => 'filterrific-periodically-observed datepicker')%>
+
   
 
-  # campos = ["numero","tipo", "fecha", "cliente_id","bultos",           
-  #   "mercancia_id",     
-  #   "matriculaCamion",  
-  #   "matriculaRemolque", 
-  #   "pesoneto",          
-  #   "pesobruto",         
-  #   "procedencia",       
-  #   "transitario_id",    
-  #   "barco_id",          
-  #   "conocimiento",      
-  #   "precinto1",
-  #   "precinto2",
-  #   "precinto3",
-  #   "flete",             
-  #   "total",             
-  #   "estado",            
-  #   "year"]
+  <% Registro.campos_filtro.each do |camp| %>
 
+      <div class="<%= camp[:campo] %> campoFiltro">
+        <%case camp[:tipo]
+          when "text" || "number" %>
+          <%= camp[:titulo]%>
+          <%= search = "search_"+camp[:campo] 
+          f.text_field(search,:class => 'filterrific-periodically-observed')%> 
+          <% when "asoc" %>
+            <%= camp[:titulo]%>
+            <%=
+            search = "search_#{camp[:campo]}"
+            coleccion=instance_variable_get("@#{camp[:variable]}")
+            f.select  search, options_from_collection_for_select(coleccion, "id", "nombre"),{include_blank: true}, {class: "form-control"}%>    
+            <%
+            else%>
+            <%=puts "You gave me #{camp[:tipo]} -- I have no idea what to do with that."%>
 
-    f.text_field(:date_gte, :class => 'filterrific-periodically-observed datepicker')
-%>
-  hasta
-  <%=
-    f.text_field(:date_lte, :class => 'filterrific-periodically-observed datepicker')
+            <%
+            end%>
 
 
 
 
-    Registro.campos_filtro.each do |camp|
-          %>
-          <div class="<%= camp[0] %> campoFiltro">
-                <%= camp[0]%>
-                <%= 
-
-                search = "search_"+camp[0] 
-                  f.text_field(
-                    search,
-                    :class => 'filterrific-periodically-observed'
-                  )
-            %>   
+               
           </div>
     <%end%>
 

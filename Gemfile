@@ -52,6 +52,6 @@ gem 'filterrific'
 
 # gem 'mysql2'
 
-#gem 'better_errors'
+gem 'better_errors'
 
 #gem 'html5_validators'

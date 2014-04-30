@@ -5,9 +5,21 @@ class RegistrosController < ApplicationController
   # GET /registros.json
   def index
 
+    if session[:year]==nil  
+      fecha=Time.new  
+      session[:year]= fecha.year
+    end
+    @year = session[:year]
+
+    @clientes= Cliente.all
+    @mercancias = Mercancia.all
+    @transitarios = Transitario.all
+    @barcos = Barco.all
+    
+
      @filterrific = Filterrific.new(Registro, params[:filterrific] || session[:filterrific_registros])
       # @registros = Registro.filterrific_find(@filterrific).page(params[:page])
-      @registros = Registro.filterrific_find(@filterrific).page(params[:page]).per(5)
+      @registros = Registro.filterrific_find(@filterrific).order('numero desc').page(params[:page]).per(5)
      session[:filterrific_registros] = @filterrific.to_hash
 
 # Respond to html for initial page load and to js for AJAX filter updates.
@@ -17,11 +29,7 @@ class RegistrosController < ApplicationController
     end
 
     
-    # if session[:year]==nil  
-    #   fecha=Time.new  
-    #   session[:year]= fecha.year
-    # end
-    # @year = session[:year]
+
     # @registros = Registro.where(year: @year).order('numero desc').page(params[:page]).per(5)
 
   end

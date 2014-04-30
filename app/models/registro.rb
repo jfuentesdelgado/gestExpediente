@@ -150,34 +150,35 @@ class Registro < ActiveRecord::Base
 
 	#array nombre de campo y especifica si el tipo es numero o texto
 	@campos_filtro= [
-		["numero","number"],
-		["tipo","text"],
-		#["fecha","date"],
-		["cliente_id","text"],
-		["bultos","number"],
-	    ["mercancia_id","text"],
-	    ["matriculaCamion","text"],
-	    ["matriculaRemolque","text"],
-	    ["pesoneto","number"],
-	    ["pesobruto","number"],
-	    ["procedencia","text"],
-	    ["transitario_id","text"],
-	    ["barco_id","text"],
-	    ["conocimiento","text"],
-	    ["precinto1","text"],
-	    ["precinto2","text"],
-	    ["precinto3","text"],
-	    ["flete","text"],
-	    ["total","number"],
-	    ["estado","text"],
-	    ["year","number"]
+		{:campo => "numero",tipo:"number",titulo:"Numero"},
+		{campo:"tipo",tipo:"text",titulo:"Tipo"},
+		{campo:"cliente_id",tipo:"asoc",variable:"clientes",titulo:""},
+		{campo:"bultos", tipo:"number",titulo:"Bultos"},
+	    {campo:"mercancia_id", tipo:"asoc",variable:"mercancias",titulo:"Mercancia"},
+	    {campo:"matriculaCamion",tipo:"text",titulo:"Matricula Camión"},
+	    {campo:"matriculaRemolque",tipo:"text",titulo:"Matricula Remolque"},
+	    {campo:"pesoneto",tipo:"number",titulo:"Peso Neto"},
+	    {campo:"pesobruto",tipo:"number",titulo:"Peso Bruto"},
+	    {campo:"procedencia",tipo:"text",titulo:"Procedencia"},
+	    {campo:"transitario_id",tipo:"asoc",variable:"transitarios", titulo:"Transitario"},
+	    {campo:"barco_id",tipo:"asoc",variable:"barcos",titulo:"Barco"},
+	    {campo:"conocimiento",tipo:"text",titulo:"Conocimiento"},
+	    {campo:"precinto1",tipo:"text",titulo:"Precinto 1"},
+	    {campo:"precinto2",tipo:"text",titulo:"Precinto 2"},
+	    {campo:"precinto3",tipo:"text",titulo:"Precinto 3"},
+	    {campo:"flete",tipo:"text",titulo:"Flete"},
+	    {campo:"total",tipo:"number",titulo:"Total"},
+	    {campo:"estado",tipo:"text",titulo:"Estado"},
+	    {campo:"year",tipo:"number",titulo:"Año"}
 	]
 
 
     campos_search =[]
 
+
     @campos_filtro.each do |camp|
-    	campos_search << "search_"+camp [0]
+    	# debugger
+    	campos_search << "search_"+camp[:campo]
     end
 
     campos_search << "date_gte"
@@ -202,36 +203,41 @@ class Registro < ActiveRecord::Base
 
 campos_filtro.each do |camp|
 
-	scope "search_"+camp[0],  ->(proc) {
-		if camp[1]=="text"
-			proc = "%"+proc+"%"
-	 		where(camp[0]+" Like ?", proc) 
-	 	else 
-	 		#en caso contrario es numero
-	 			where(camp[0]+" = ?", proc) 
+	scope "search_"+camp[:campo],  ->(proc) {
+
+		case camp[:tipo]
+			when "text"
+				proc = "%#{proc}%"
+	 			where(camp[:campo]+" Like ?", proc) 
+	 		when "number"
+	 			where("#{camp[:campo]} = ?", proc)
+	 		when "asoc"
+	 			where("#{camp[:campo]} = ?", proc)
+	 		else
+	 			puts "You gave me #{camp[:tipo]} -- I have no idea what to do with that."
+		end
+
+
+		# if camp[1]=="text"
+		# 	proc = "%#{proc}%"
+	 # 		where(camp[0]+" Like ?", proc) 
+	 # 	else 
+	 # 		#en caso contrario es numero
+	 # 			where(camp[0]+" = ?", proc) 
 	 		
-	 	end
+	 # 	end
  	}
 end
 
 
-
-
-
-
-
-
-
-scope :date_gte, ->(proc){
-
-	 where("fecha >= ?", proc) 
-
+scope :date_gte, ->(infecha){
+	fecha= Date.strptime(infecha, '%d/%m/%Y')
+	where("fecha >= ?", fecha) 
 }
 
-scope :date_lte, ->(proc){
-
-	 where("fecha <= ?", proc) 
-
+scope :date_lte, ->(infecha){
+	fecha= Date.strptime(infecha, '%d/%m/%Y')
+	where("fecha <= ?", fecha) 
 }
 # scope :search_procedencia, ->(proc) { where("procedencia Like %?", proc) }
 
