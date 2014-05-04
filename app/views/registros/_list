@@ -1,49 +1,58 @@
-<div id="filterrific_results">
-<div class="page-header">
-<h1>Listado registros</h1>
-</div>
-<%= paginate @registros %>  
-<br/>
-<%= @year %>
-<table class="table table-border">
-  <thead>
-    <tr>
-      <th>Numero</th>
-      
-      <th>Tipo</th>
-      <th>Fecha</th>
-      <th>Hora</th>
-      <th>Cliente</th>
-      <th>Bultos</th>
-      <th>Matriculacamion</th>
-      <th>Matricularemolque</th>
-      <th>Pesoneto</th>
-      <th>Pesobruto</th>
-      <th>Procedencia</th>
-      <th>Conocimiento</th>
-      <th>Precinto1</th>
-      
-      <th>Precinto2</th>
-      
-      <th>Precinto3</th>
-      
-      <th>Flete</th>
-      <th>Total</th>
-      <th>Estado</th>
-      <th>Mostrar</th>
-      <th>Editar</th>
-      <th>Eliminar</th>
-    </tr>
-  </thead>
+<div id="filterrific_results" >
+  <div class="page-header">
+    <h1>Listado registros</h1>
+  </div>
+  
+  
+  
+  <%= link_to 'Crear nuevo Registro', new_registro_path, {role:"button", class:"btn btn-primary"} %>
+  <br>
+  <%= paginate @registros %>  
+  <br/>
+  <%#= @registros.length %>
+    
+  <div class="panel panel-default">
+  <div class="table-responsive ">
+  <table class="table table-condensed table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Numero</th>
+        <th>Estado</th>
+        <th>Mostrar</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+        <th>Tipo</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Cliente</th>
+        <th>Bultos</th>
+        <th>M.Camión</th>
+        <th>M.Remolque</th>
+        <th>P.Neto</th>
+        <th>P.Bruto</th>
+        <th>Procedencia</th>
+        <th>Conocimiento</th>
+        <th>Precinto1</th>
+        <th>Precinto2</th>
+        <th>Precinto3</th>
+        <th>Flete</th>
+        <th>Total</th>
+        
+        
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @registros.each do |registro| %>
+    <tbody>
+      <% @registros.each do |registro| %>
       <tr>
         <td><%= registro.mostrarNumero %></td>
-       
+        <td><%= registro.estado %></td>
+        <td><%= link_to 'Mostrar', registro %></td>
+        <td><%= link_to 'Editar', edit_registro_path(registro) %></td>
+        <td><%= link_to 'Eliminar', registro, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
         <td><%= registro.tipo %></td>
         <td><%= registro.fecha %></td>
-        <td><%= registro.hora %></td>
+        <td><%= registro.hora.strftime "%H:%M" %></td>
         <td><%= registro.cliente.nombre %></td>
         <td><%= registro.bultos %></td>
         <td><%= registro.matriculaCamion %></td>
@@ -53,27 +62,23 @@
         <td><%= registro.procedencia %></td>
         <td><%= registro.conocimiento %></td>
         <td><%= registro.precinto1 %></td>
-        
         <td><%= registro.precinto2 %></td>
-       
         <td><%= registro.precinto3 %></td>
-        
         <td><%= registro.flete %></td>
         <td><%= registro.total %></td>
-        <td><%= registro.estado %></td>
-        <td><%= link_to 'Mostrar', registro %></td>
-        <td><%= link_to 'Editar', edit_registro_path(registro) %></td>
-        <td><%= link_to 'Eliminar', registro, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+        
+        
       </tr>
-    <% end %>
-    
-  </tbody>
-</table>
+      <% end %>
 
-<br>
+    </tbody>
+  </table>
+  </div>
+</div>
+  <br>
 
 
 
-<%= link_to 'Crear nuevo Registro', new_registro_path, class:"btn btn-default" %>
+  
 
 </div>

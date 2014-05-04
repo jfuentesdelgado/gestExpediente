@@ -152,7 +152,7 @@ class Registro < ActiveRecord::Base
 	@campos_filtro= [
 		{:campo => "numero",tipo:"number",titulo:"Numero"},
 		{campo:"tipo",tipo:"text",titulo:"Tipo"},
-		{campo:"cliente_id",tipo:"asoc",variable:"clientes",titulo:""},
+		{campo:"cliente_id",tipo:"asoc",variable:"clientes",titulo:"Cliente"},
 		{campo:"bultos", tipo:"number",titulo:"Bultos"},
 	    {campo:"mercancia_id", tipo:"asoc",variable:"mercancias",titulo:"Mercancia"},
 	    {campo:"matriculaCamion",tipo:"text",titulo:"Matricula Camión"},

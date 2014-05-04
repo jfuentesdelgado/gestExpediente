@@ -15,6 +15,7 @@
 	<nav class="navbar navbar-default" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
+
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
@@ -22,17 +23,22 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="http://www.Dwarfscode.com">Dwarfscode</a>
+			
 		</div>
 
+
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<div class="collapse navbar-collapse .navbar-left" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li class="active"><%= link_to "Registros", registros_path %></li>
 				<li><%= link_to "Barcos", barcos_path %></li>
 				<li><%= link_to "Clientes", clientes_path %></li>
 				<li><%= link_to "Mercancias", mercancias_path %></li>
 				<li><%= link_to "Transitarios", transitarios_path %></li>
-				<li><%= link_to "Cambiar año", changeyear_path %></li>
+				<li><%= link_to "Cambiar año: Activo #{@year}", changeyear_path %>
+				
+
+				</li>
 				<!-- <li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Barcos <b class="caret"></b></a>
 					<ul class="dropdown-menu">
@@ -56,10 +62,15 @@
 					</ul>
 				</li>
 			</ul> -->
+			
+			
 		</div><!-- /.navbar-collapse -->
-	</nav>
-<div class="container">
+		
 
+		
+		
+	</nav>
+<div class="container-fluid col-md-12">
 	<%= yield %>
 </div>
 

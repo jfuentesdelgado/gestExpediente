@@ -6,69 +6,84 @@
 </script>
 
 
-<%= form_for @filterrific do |f| %>
-  <div>
-  Desde
-  <%#= f.date_select :date_gte %>
-  <%=f.text_field(:date_gte, :class => 'filterrific-periodically-observed datepicker')%>
-  hasta
-  <%= f.text_field(:date_lte, :class => 'filterrific-periodically-observed datepicker')%>
+<%
+  # El ancho lo medimos en 12 columnas
+  # voy a usar dos variables para poner cuantas para label y cuantas para el input
 
-  
+  colLabel=4;
+  colInput=8;
+  %>
 
-  <% Registro.campos_filtro.each do |camp| %>
+ 
 
-      <div class="<%= camp[:campo] %> campoFiltro">
-        <%case camp[:tipo]
-          when "text" || "number" %>
-          <%= camp[:titulo]%>
-          <%= search = "search_"+camp[:campo] 
-          f.text_field(search,:class => 'filterrific-periodically-observed')%> 
-          <% when "asoc" %>
-            <%= camp[:titulo]%>
-            <%=
-            search = "search_#{camp[:campo]}"
-            coleccion=instance_variable_get("@#{camp[:variable]}")
-            f.select  search, options_from_collection_for_select(coleccion, "id", "nombre"),{include_blank: true}, {class: "form-control"}%>    
-            <%
-            else%>
-            <%=puts "You gave me #{camp[:tipo]} -- I have no idea what to do with that."%>
+  <div class="panel panel-default">
+    <div class="panel-heading">Filtro</div>
+    <div class="panel-body">
 
-            <%
-            end%>
+      <%= form_for @filterrific, html: {role:"form", class:"form-horizontal"} do |f| %>
 
+        <% Registro.campos_filtro.each do |camp| %>
 
+        <div class="<%= camp[:campo]%> col-sm-4 campoFiltro ">
 
+          <%
 
-               
+          case camp[:tipo]
+            when "text","number" %>
+            <% search = "search_"+camp[:campo] %>
+            <div class=" field form-group">
+              <%= f.label search, camp[:titulo], class:"control-label col-sm-#{colLabel}" %> 
+              <div class="col-sm-<%=colInput%>">
+                <%= f.text_field(search,:class => "filterrific-periodically-observed form-control col-sm-#{colInput}")%> 
+              </div>
+            </div>
+            <% when "asoc" %>
+            <% search = "search_#{camp[:campo]}"
+            coleccion=instance_variable_get("@#{camp[:variable]}")%>
+            <div class="field form-group">
+              <%= f.label search, camp[:titulo], class:"control-label col-sm-#{colLabel}"%>
+              <div class="col-sm-<%=colInput%>">
+                <%= f.select  search, options_from_collection_for_select(coleccion, "id", "nombre"),{include_blank: true}, {class: "form-control"}%>
+              </div>    
+            </div>
+            <% else %>
+            <%=puts "Hay un campo en el fintro que no tiene definido el tipo #{camp[:tipo]} -- "%>
+            <% end %>
+
           </div>
-    <%end%>
+          <%end%>
+
+          <div class="col-sm-8">
+            <div class="field form-group">
+              <%=f.label :date_gte, "Fecha desde", class:"control-label col-sm-2" %> 
+              <%#= f.date_select :date_gte %>
+              <div class="col-sm-4">
+                <%=f.text_field(:date_gte, :class => "filterrific-periodically-observed datepicker form-control ")%>
+              </div>
+              <%=f.label :date_lte, "hasta", class:"control-label col-sm-2" %> 
+              <div class="col-sm-4">
+                <%= f.text_field(:date_lte, :class => "filterrific-periodically-observed datepicker form-control ")%>
+              </div>
+            </div>
+          </div>
 
 
 
-    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-    <%#= f.text_field(
-      :search_procedencia,
-      :class => 'filterrific-periodically-observed'
-    ) %>
-  </div>
-
-  <div>
-    <%= link_to(
-      'Reset filters',
-      reset_filterrific_registros_path,
-    ) %>
-  </div>
-  <%# add an automated spinner to your form when the list is refreshed %>
-  <%= render_filterrific_spinner %>
-<% end %>
+          <div class="clearfix"></div>
+          <%= link_to( 'Limpiar filtros',      reset_filterrific_registros_path  , class:"btn btn-default"  ) %>
+          <%# add an automated spinner to your form when the list is refreshed %>
+          <%= render_filterrific_spinner %>
+        </div>
+        <% end %>
+</div>
 
 
-<%= render(
-  :partial => 'list',
-  :locals => { :@registos => @registros }
-) %>
+        <%= render(
+          :partial => 'list',
+          :locals => { :@registos => @registros }
+          ) %>
 
+       
 
 
 
