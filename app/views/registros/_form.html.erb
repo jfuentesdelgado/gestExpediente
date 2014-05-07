@@ -31,13 +31,13 @@ anchoCol = 3
   <div class="field form-group">
     <%= f.label :tipo , class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
-     <%= f.select  :tipo, options_for_select([['T','T'], ['I','I'],['E','E'],['C','C']],'T'),{}, {class: "form-control"}  %>
+     <%= f.select  :tipo, options_for_select([['T','T'], ['I','I'],['E','E'],['C','C']],'T'),{}, {class: "form-control "}  %>
   </div>
   </div>
   <div class="field form-group">
     <%= f.label :fecha, class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
-    <%= f.date_select :fecha, order:[:day,:month,:year],:use_month_names => [t(:jan), t(:feb), t(:mar), t(:apr), t(:may), t(:jun), t(:jul), t(:aug), t(:sep), t(:oct), t(:nov), t(:dec)], class:"form-control" %>
+    <%= f.date_select :fecha, {order:[:day,:month,:year],:use_month_names => [t(:jan), t(:feb), t(:mar), t(:apr), t(:may), t(:jun), t(:jul), t(:aug), t(:sep), t(:oct), t(:nov), t(:dec)]}  %>
   </div>
   </div>
   <div class="field form-group">
@@ -67,32 +67,32 @@ anchoCol = 3
   </div>
 <div class="col-md-4">
   <div class="field form-group">
-    <%= f.label :matriculaCamion ,"Matricual Camión", class:"control-label col-md-#{anchoCol}"%>
+    <%= f.label :matriculaCamion ,"Matricula Camión", class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
     <%= f.text_field :matriculaCamion , class:"form-control"%>
   </div>
   </div>
   <div class="field form-group">
-    <%= f.label :matriculaRemolque , "Matricual Remolque" ,class:"control-label col-md-#{anchoCol}"%>
+    <%= f.label :matriculaRemolque , "Matricula Remolque" ,class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
     <%= f.text_field :matriculaRemolque , class:"form-control"%>
   </div>
   </div>
 
   <div class="field form-group">
-    <%= f.label :pesoneto , class:"control-label col-md-#{anchoCol}"%>
+    <%= f.label :pesoneto , "Peso Neto", class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
     <%= f.number_field :pesoneto , class:"form-control"%>
   </div>
   </div>
   <div class="field form-group">
-    <%= f.label :pesobruto, class:"control-label col-md-#{anchoCol}"%>
+    <%= f.label :pesobruto, "Peso Bruto", class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
     <%= f.number_field :pesobruto , class:"form-control"%>
   </div>
   </div>
   <div class="field form-group">
-    <%= f.label :procedencia , class:"control-label col-md-#{anchoCol}"%>
+    <%= f.label :procedencia , "Procedencia", class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
     <%= f.text_field :procedencia, class:"form-control" %>
   </div>
@@ -119,19 +119,19 @@ anchoCol = 3
   </div>
   </div>
   <div class="field form-group">
-    <%= f.label :precinto1 , class:"control-label col-md-#{anchoCol}"%>
+    <%= f.label :precinto1 , "Precinto 1", class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
     <%= f.text_field :precinto1, class:"form-control" %>
   </div>
   </div>
   <div class="field form-group">
-    <%= f.label :precinto2 , class:"control-label col-md-#{anchoCol}"%>
+    <%= f.label :precinto2 , "Precinto 2", class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
     <%= f.text_field :precinto2, class:"form-control" %>
   </div>
   </div>
   <div class="field form-group">
-    <%= f.label :precinto3 , class:"control-label col-md-#{anchoCol}"%>
+    <%= f.label :precinto3 , "Precinto 3", class:"control-label col-md-#{anchoCol}"%>
     <div class="col-md-<%= 12-anchoCol %>">
     <%= f.text_field :precinto3, class:"form-control" %>
   </div>
@@ -164,7 +164,7 @@ anchoCol = 3
 <%= render partial:'subform', locals: { entidad:@registro.expedientes , titulo: 'EXPEDIENTES', campValor:'numero' } %>
 
 <div class="actions">
-  <%= f.submit nil, {class:"btn btn-default"} %>
+  <%= f.submit nil, {class:"btn btn-primary"} %>
 </div>
 <% end %>
 

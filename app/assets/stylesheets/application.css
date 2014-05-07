@@ -15,4 +15,23 @@
 .panel{
 	overflow: auto;
 }
+body > div.container-fluid.col-md-12 > div.panel.panel-default > div.panel-heading > h4 > a.btn.btn-primary,
+#new_registro > div:nth-child(2) > div:nth-child(1) > div > span, #edit_registro_49 > div:nth-child(2) > div:nth-child(1) > div > span{
+	color: white;
+}
 
+.listElementos{
+	padding: 1em;
+}
+.listElementos > li{
+	padding-bottom: 0.5em;
+}
+
+.listElementos > li span.valor{
+	padding-left: 2em;
+}
+
+
+ul{
+	list-style-type: none;
+}

@@ -1,4 +1,6 @@
-<%= form_for(@barco) do |f| %>
+
+<div class="container">
+<%= form_for(@barco, html: {role:"form", class:"form-horizontal"}) do |f| %>
   <% if @barco.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@barco.errors.count, "error") %> prohibited this barco from being saved:</h2>
@@ -11,11 +13,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre %>
+  <div class="field form-group">
+    <%= f.label :nombre , class: "control-label" %>
+    <%= f.text_field :nombre, class: "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit nil, {class:"btn btn-primary"} %>
   </div>
 <% end %>
+</div>

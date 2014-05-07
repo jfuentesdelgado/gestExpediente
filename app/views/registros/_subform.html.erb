@@ -1,31 +1,35 @@
 
-<br/>
-<%=campValor%>
-
+<div class="clearfix"></div>
 <div>
+  <div class="col-md-3">
+    <%=titulo%>
+  </div>
+  <div  class="col-md-6">
+    <input id="text<%=campValor%>" type="text" class="form-control" >
+  </div>
+  <!-- <button id="buttonDUA">Añadir</button> -->
+ <!--  <span id="button<%=campValor%>" class="btn btn-default col-md-3">Añadir</span> -->
+  <button id="button<%=campValor%>" class="btn btn-default col-md-3">Añadir</button>
 
-<%=titulo%>
-<input id="text<%=campValor%>" type="text" class="form-control">
-<!-- <button id="buttonDUA">Añadir</button> -->
-<span id="button<%=campValor%>">Añadir</span>
+  <div class="clearfix"></div>
+  <ul id="list<%=campValor%>" class="listElementos">
 
-<ul id="list<%=campValor%>">
-
-<%if entidad
-  entidad.each do |d|
-    %>
-    <li>
-    <%= d[campValor] %>
-    <span class='quitar<%=campValor%>' onclick='quitarLI(event);'>-eliminar-</span>
-    <input type='hidden' name='<%=campValor%>[]' value="<%= d[campValor] %>"></li> 
-  <%
-  end
-end%>
+    <%if entidad
+      entidad.each do |d|
+        %>
+        <li>
+        <span class='quitar<%=campValor%> btn btn-danger' onclick='quitarLI(event);'>Eliminar</span>
+          <span class="valor"><%= d[campValor] %></span>
+          
+          <input type='hidden' name='<%=campValor%>[]' value="<%= d[campValor] %>">
+        </li> 
+    <%
+        end
+        end%>
 
 
-</ul>
-
-</div>
+      </ul>
+    </div>
 
 
 
@@ -43,7 +47,7 @@ function quitarLI(e){
     $(document).ready(function(){
     function anadirLI<%=campValor%>(){
       $("#text<%=campValor%>").value
-      var li=$("<li>"+$("#text<%=campValor%>").val()+"<span class='quitar<%=campValor%>' onclick='quitarLI(event);'>-eliminar-</span><input type='hidden' name='<%=campValor%>[]' value='"+$("#text<%=campValor%>").val()+"'></li>");
+      var li=$("<li><span class='quitar<%=campValor%>  btn btn-danger' onclick='quitarLI(event);'>Eliminar</span><span class='valor'>"+$("#text<%=campValor%>").val()+"</span><input type='hidden' name='<%=campValor%>[]' value='"+$("#text<%=campValor%>").val()+"'></li>");
       $("#list<%=campValor%>").append(li);
       $("#text<%=campValor%>").val(undefined);
     }

@@ -14,10 +14,19 @@
   colInput=8;
   %>
 
- 
 
   <div class="panel panel-default">
-    <div class="panel-heading">Filtro</div>
+    <div class="panel-heading">
+    <h4 class="panel-title">
+        <a data-toggle="collapse"  href="#collapseFiltro"  class="btn btn-primary">
+          Filtro
+        </a>
+        <%= link_to( 'Limpiar filtros',      reset_filterrific_registros_path  , class:"btn btn-default"  ) %>
+          <%# add an automated spinner to your form when the list is refreshed %>
+          <%= render_filterrific_spinner %>
+      </h4>
+    </div>
+    <div id="collapseFiltro" class="panel-collapse collapse out">
     <div class="panel-body">
 
       <%= form_for @filterrific, html: {role:"form", class:"form-horizontal"} do |f| %>
@@ -75,12 +84,12 @@
           <%= render_filterrific_spinner %>
         </div>
         <% end %>
+        </div>
 </div>
 
 
         <%= render(
-          :partial => 'list',
-          :locals => { :@registos => @registros }
+          :partial => 'list'
           ) %>
 
        
