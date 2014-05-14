@@ -18,7 +18,7 @@ class DuasControllerTest < ActionController::TestCase
 
   test "should create dua" do
     assert_difference('Dua.count') do
-      post :create, dua: { belongs_to: @dua.belongs_to, dua: @dua.dua }
+      post :create, dua:  {id: @dua.id, dua: @dua.dua, registro_id: @dua.registro_id} 
     end
 
     assert_redirected_to dua_path(assigns(:dua))
@@ -35,7 +35,7 @@ class DuasControllerTest < ActionController::TestCase
   end
 
   test "should update dua" do
-    patch :update, id: @dua, dua: { belongs_to: @dua.belongs_to, dua: @dua.dua }
+    patch :update, id: @dua, dua: { dua: @dua.dua }
     assert_redirected_to dua_path(assigns(:dua))
   end
 

@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  nombre: MyString
+barcoconregistro:
+  id: 1
+  nombre: BarcoPrimero
 
 two:
-  nombre: MyString
+  id: 2	
+  nombre: BarcoSegundo
+
+barcosinregistro:
+  id: 3	
+  nombre: BarcoSegundo

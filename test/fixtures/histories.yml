@@ -2,10 +2,12 @@
 
 one:
   date: 2014-04-24
+  registro_id: 1
   original_state: MyString
   final_state: MyString
 
 two:
+  registro_id: 2
   date: 2014-04-24
   original_state: MyString
   final_state: MyString

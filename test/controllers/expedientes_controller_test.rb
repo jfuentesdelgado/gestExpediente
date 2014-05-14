@@ -18,7 +18,7 @@ class ExpedientesControllerTest < ActionController::TestCase
 
   test "should create expediente" do
     assert_difference('Expediente.count') do
-      post :create, expediente: { numero: @expediente.numero }
+      post :create, expediente: { numero: @expediente.numero, registro_id: @expediente.registro_id}
     end
 
     assert_redirected_to expediente_path(assigns(:expediente))

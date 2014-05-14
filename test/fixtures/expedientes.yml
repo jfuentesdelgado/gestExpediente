@@ -1,7 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  numero: MyString
+  id: 1
+  numero: 12
+  registro_id: 1
 
 two:
-  numero: MyString
+  id: 2
+  numero: 22
+  registro_id: 1
+
+three:
+  id: 3
+  numero: 32
+  registro_id: 1

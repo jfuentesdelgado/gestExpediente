@@ -1,1 +1,14 @@
+one:
+  id: 1
+  dua: 1
+  registro_id: 1
 
+two:
+  id: 2
+  dua: 2
+  registro_id: 1
+
+three:
+  id: 3
+  dua: 3
+  registro_id: 1

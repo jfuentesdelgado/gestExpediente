@@ -49,7 +49,10 @@ class RegistrosController < ApplicationController
   # GET /registros/new
   def new
     @registro = Registro.new
-   
+   if session[:year]==nil  
+      fecha=Time.new  
+      session[:year]= fecha.year
+    end
     @registro.year = session[:year]
     @registro.valoresDefecto
     
@@ -76,7 +79,6 @@ class RegistrosController < ApplicationController
   def create
     @registro = Registro.new(registro_params)
 
-
     duas=params[:dua]
     # debugger
 
@@ -86,8 +88,6 @@ class RegistrosController < ApplicationController
     # debugger
 
     @registro.addExpedientes(expedientes) if expedientes
-
-
 
     respond_to do |format|
       if @registro.save

@@ -18,7 +18,7 @@ class RegistrosControllerTest < ActionController::TestCase
 
   test "should create registro" do
     assert_difference('Registro.count') do
-      post :create, registro: { : @registro., : @registro., : @registro., : @registro., bultos: @registro.bultos, conocimiento: @registro.conocimiento, estado: @registro.estado, fecha: @registro.fecha, flete: @registro.flete, hora: @registro.hora, matriculaCamion: @registro.matriculaCamion, matriculaRemolque: @registro.matriculaRemolque, numero: @registro.numero, pesobruto: @registro.pesobruto, pesoneto: @registro.pesoneto, precinto1: @registro.precinto1, precinto2: @registro.precinto2, precinto3: @registro.precinto3, procedencia: @registro.procedencia, tipo: @registro.tipo, total: @registro.total }
+      post :create, registro: { barco_id: @registro.barco_id, transitario_id: @registro.transitario_id, mercancia_id: @registro.mercancia_id, cliente_id: @registro.cliente_id, year: @registro.year, bultos: @registro.bultos, conocimiento: @registro.conocimiento, estado: @registro.estado, fecha: @registro.fecha, flete: @registro.flete, hora: @registro.hora, matriculaCamion: @registro.matriculaCamion, matriculaRemolque: @registro.matriculaRemolque, numero: @registro.numero, pesobruto: @registro.pesobruto, pesoneto: @registro.pesoneto, precinto1: @registro.precinto1, precinto2: @registro.precinto2, precinto3: @registro.precinto3, procedencia: @registro.procedencia, tipo: @registro.tipo, total: @registro.total }
     end
 
     assert_redirected_to registro_path(assigns(:registro))
@@ -35,7 +35,7 @@ class RegistrosControllerTest < ActionController::TestCase
   end
 
   test "should update registro" do
-    patch :update, id: @registro, registro: { : @registro., : @registro., : @registro., : @registro., bultos: @registro.bultos, conocimiento: @registro.conocimiento, estado: @registro.estado, fecha: @registro.fecha, flete: @registro.flete, hora: @registro.hora, matriculaCamion: @registro.matriculaCamion, matriculaRemolque: @registro.matriculaRemolque, numero: @registro.numero, pesobruto: @registro.pesobruto, pesoneto: @registro.pesoneto, precinto1: @registro.precinto1, precinto2: @registro.precinto2, precinto3: @registro.precinto3, procedencia: @registro.procedencia, tipo: @registro.tipo, total: @registro.total }
+    patch :update, id: @registro, registro: {  barco_id: @registro.barco_id, transitario_id: @registro.transitario_id, mercancia_id: @registro.mercancia_id, cliente_id: @registro.cliente_id, year: @registro.year, bultos: @registro.bultos, conocimiento: @registro.conocimiento, estado: @registro.estado, fecha: @registro.fecha, flete: @registro.flete, hora: @registro.hora, matriculaCamion: @registro.matriculaCamion, matriculaRemolque: @registro.matriculaRemolque, numero: @registro.numero, pesobruto: @registro.pesobruto, pesoneto: @registro.pesoneto, precinto1: @registro.precinto1, precinto2: @registro.precinto2, precinto3: @registro.precinto3, procedencia: @registro.procedencia, tipo: @registro.tipo, total: @registro.total }
     assert_redirected_to registro_path(assigns(:registro))
   end
 

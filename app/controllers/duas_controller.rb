@@ -70,6 +70,7 @@ class DuasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dua_params
-      params.require(:dua).permit(:dua, :belongs_to)
+      #params.require(:dua).permit(:dua, :belongs_to)
+      params.require(:dua).permit(:dua, :registro_id)
     end
 end

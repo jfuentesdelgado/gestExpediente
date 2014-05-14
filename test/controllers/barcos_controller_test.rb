@@ -2,7 +2,8 @@ require 'test_helper'
 
 class BarcosControllerTest < ActionController::TestCase
   setup do
-    @barco = barcos(:one)
+    @barco = barcos(:barcoconregistro)
+    @barcoborrable= barcos(:barcosinregistro)
   end
 
   test "should get index" do
@@ -41,7 +42,7 @@ class BarcosControllerTest < ActionController::TestCase
 
   test "should destroy barco" do
     assert_difference('Barco.count', -1) do
-      delete :destroy, id: @barco
+      delete :destroy, id: @barcoborrable
     end
 
     assert_redirected_to barcos_path
