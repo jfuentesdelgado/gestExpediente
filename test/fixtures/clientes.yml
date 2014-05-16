@@ -15,3 +15,6 @@ two:
   nombre: Cliente2
 # {}
 #  column: value
+sinregistro:
+  id: 3
+  nombre: Cliente sin registro

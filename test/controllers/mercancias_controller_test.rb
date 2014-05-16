@@ -3,6 +3,7 @@ require 'test_helper'
 class MercanciasControllerTest < ActionController::TestCase
   setup do
     @mercancia = mercancias(:one)
+    @mercancia_borrable = mercancias(:sinregistro)
   end
 
   test "should get index" do
@@ -41,7 +42,7 @@ class MercanciasControllerTest < ActionController::TestCase
 
   test "should destroy mercancia" do
     assert_difference('Mercancia.count', -1) do
-      delete :destroy, id: @mercancia
+      delete :destroy, id: @mercancia_borrable
     end
 
     assert_redirected_to mercancias_path

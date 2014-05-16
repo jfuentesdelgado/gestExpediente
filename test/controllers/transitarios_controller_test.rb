@@ -2,7 +2,8 @@ require 'test_helper'
 
 class TransitariosControllerTest < ActionController::TestCase
   setup do
-    @transitario = transitarios(:one)
+    @transitario = transitarios(:conregistro)
+    @transitarioborrable= transitarios(:one)
   end
 
   test "should get index" do
@@ -41,7 +42,7 @@ class TransitariosControllerTest < ActionController::TestCase
 
   test "should destroy transitario" do
     assert_difference('Transitario.count', -1) do
-      delete :destroy, id: @transitario
+      delete :destroy, id: @transitarioborrable
     end
 
     assert_redirected_to transitarios_path

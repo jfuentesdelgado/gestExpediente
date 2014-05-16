@@ -1,11 +1,7 @@
 class Barco < ActiveRecord::Base
-	has_many :registros
+	has_many :registros, dependent: :restrict_with_error
 	validates :nombre, :presence => true
 
-	before_destroy do |barco|
-		if barco.resgistros.any?
-			false
-		end
-	end
+	
 
 end

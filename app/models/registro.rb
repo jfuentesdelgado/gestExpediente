@@ -2,7 +2,7 @@ class Registro < ActiveRecord::Base
 	
 	has_many :duas
 
-	has_many :histories
+	has_many :histories, dependent: :delete_all
 
 	has_many :expedientes
 
@@ -11,10 +11,11 @@ class Registro < ActiveRecord::Base
 	belongs_to :transitario
 	belongs_to :barco
 
-	validates_associated :cliente
-	validates_associated :mercancia
-	validates_associated :transitario
-	validates_associated :barco
+	validates_presence_of :cliente
+	validates_presence_of :mercancia
+	#validates_associated :transitario
+	validates_presence_of :transitario
+	validates_presence_of :barco
 
 	validates :numero , :tipo, :fecha, :hora, :bultos, :matriculaCamion, :matriculaRemolque, presence:true
 	validates :pesoneto, :pesobruto, :procedencia, :conocimiento, :flete, :total, :estado, presence:true
@@ -183,6 +184,8 @@ class Registro < ActiveRecord::Base
 
     campos_search << "date_gte"
     campos_search << "date_lte"
+	
+
 	filterrific(
 
 		:filter_names => campos_search

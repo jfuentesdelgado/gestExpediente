@@ -3,6 +3,7 @@ require 'test_helper'
 class ClientesControllerTest < ActionController::TestCase
   setup do
     @cliente = clientes(:one)
+    @clientesinregistro = clientes(:sinregistro)
   end
 
   test "should get index" do
@@ -41,7 +42,7 @@ class ClientesControllerTest < ActionController::TestCase
 
   test "should destroy cliente" do
     assert_difference('Cliente.count', -1) do
-      delete :destroy, id: @cliente
+      delete :destroy, id: @clientesinregistro
     end
 
     assert_redirected_to clientes_path
