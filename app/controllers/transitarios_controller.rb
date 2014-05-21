@@ -54,9 +54,13 @@ class TransitariosController < ApplicationController
   # DELETE /transitarios/1
   # DELETE /transitarios/1.json
   def destroy
-    @transitario.destroy
+    if @transitario.destroy
+      alerta="Transitario eliminado con exito"  
+    else
+      alerta="No se ha podido eliminar el transitario"
+    end
     respond_to do |format|
-      format.html { redirect_to transitarios_url }
+      format.html { redirect_to transitarios_url, notice: alerta }
       format.json { head :no_content }
     end
   end

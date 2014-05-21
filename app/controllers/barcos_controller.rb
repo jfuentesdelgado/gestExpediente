@@ -54,10 +54,16 @@ class BarcosController < ApplicationController
   # DELETE /barcos/1
   # DELETE /barcos/1.json
   def destroy
-    @barco.destroy
+   
+    if @barco.destroy
+      alerta="Barco eliminado con exito"  
+    else
+      alerta="No se ha podido eliminar el barco"
+    end
+
     respond_to do |format|
-      format.html { redirect_to barcos_url }
-      format.json { head :no_content }
+        format.html { redirect_to barcos_url, notice: alerta }
+        format.json { head :no_content }
     end
   end
 

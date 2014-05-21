@@ -54,9 +54,14 @@ class MercanciasController < ApplicationController
   # DELETE /mercancias/1
   # DELETE /mercancias/1.json
   def destroy
-    @mercancia.destroy
+    if @mercancia.destroy
+      alerta="Mercancia eliminado con exito"  
+    else
+      alerta="No se ha podido eliminar el mercancia"
+    end
+
     respond_to do |format|
-      format.html { redirect_to mercancias_url }
+      format.html { redirect_to mercancias_url, notice: alerta }
       format.json { head :no_content }
     end
   end

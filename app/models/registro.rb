@@ -1,10 +1,10 @@
 class Registro < ActiveRecord::Base
 	
-	has_many :duas
+	has_many :duas, dependent: :delete_all
 
 	has_many :histories, dependent: :delete_all
 
-	has_many :expedientes
+	has_many :expedientes, dependent: :delete_all
 
 	belongs_to :cliente
 	belongs_to :mercancia
