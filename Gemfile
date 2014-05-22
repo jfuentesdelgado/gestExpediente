@@ -53,5 +53,6 @@ gem 'filterrific'
 # gem 'mysql2'
 
 gem 'better_errors'
+gem 'pdfkit'
 
 #gem 'html5_validators'

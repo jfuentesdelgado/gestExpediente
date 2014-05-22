@@ -1,6 +1,16 @@
 class RegistrosController < ApplicationController
   before_action :set_registro, only: [:show, :edit, :update, :destroy]
 
+
+  def imprimir
+    @filterrific = Filterrific.new(Registro, params[:filterrific] || session[:filterrific_registros])
+      # @registros = Registro.filterrific_find(@filterrific).page(params[:page])
+      @registros = Registro.filterrific_find(@filterrific).order('numero desc')
+     
+
+    render layout: "impresion"
+  end
+
   # GET /registros
   # GET /registros.json
   def index

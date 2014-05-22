@@ -11,6 +11,8 @@ GestExpediente::Application.routes.draw do
 
   post "registros/updateEstado", as: :updateEstado
 
+  get "registros/imprimir", as: :imprimir
+
 
   resources :registros do
    get :reset_filterrific, :on => :collection
