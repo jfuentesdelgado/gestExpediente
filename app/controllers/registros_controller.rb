@@ -28,8 +28,16 @@ class RegistrosController < ApplicationController
     
 
      @filterrific = Filterrific.new(Registro, params[:filterrific] || session[:filterrific_registros])
-      # @registros = Registro.filterrific_find(@filterrific).page(params[:page])
-      @registros = Registro.filterrific_find(@filterrific).order('numero desc').page(params[:page]).per(5)
+    
+     
+     @registros = Registro.filterrific_find(@filterrific).order('numero desc').page(params[:page]).per(5)
+     @numero_registros = Registro.filterrific_find(@filterrific).order('numero desc').count
+
+     # @registros = Registro.filterrific_find(@filterrific).order('numero desc')
+     # @numero_registros = @registros.count
+     # @registros= @registros.page(params[:page]).per(5)
+     
+
      session[:filterrific_registros] = @filterrific.to_hash
 
 # Respond to html for initial page load and to js for AJAX filter updates.

@@ -15,59 +15,29 @@ hola
     
   <div class="panel panel-default">
   <div class="table-responsive ">
-  <table class="table table-condensed table-hover table-striped">
+  <table cellspacing="0px" cellpadding="0px">
     <thead>
-      <tr>
-        <th>Numero</th>
-        <th>Estado</th>
-        <th>Mostrar</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
-        <th>Tipo</th>
-        <th>Fecha</th>
-        <th>Hora</th>
-        <th>Cliente</th>
-        <th>Bultos</th>
-        <th>M.Camión</th>
-        <th>M.Remolque</th>
-        <th>P.Neto</th>
-        <th>P.Bruto</th>
-        <th>Procedencia</th>
-        <th>Conocimiento</th>
-        <th>Precinto1</th>
-        <th>Precinto2</th>
-        <th>Precinto3</th>
-        <th>Flete</th>
-        <th>Total</th>
-        
-        
+      <tr style="border:1px solid black;">
+        <th style="width:5%;">Numero</th>
+        <th style="width:5%;">Tipo</th>
+        <th style="width:14%;">Fecha</th>
+        <th style="width:19%;">Cliente</th>
+        <th style="width:14%;">AT</th>
+        <th style="width:14%;">Comisi&oacute;n</th>
+        <th style="width:14%;">ENS</th>
       </tr>
     </thead>
 
     <tbody>
       <% @registros.each do |registro| %>
-      <tr>
-        <td><%= registro.mostrarNumero %></td>
-        <td><%= registro.estado %></td>
-        <td><%= link_to 'Mostrar', registro %></td>
-        <td><%= link_to 'Editar', edit_registro_path(registro) %></td>
-        <td><%= link_to 'Eliminar', registro, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
-        <td><%= registro.tipo %></td>
-        <td><%= registro.fecha %></td>
-        <td><%= registro.hora.strftime "%H:%M" %></td>
-        <td><%= registro.cliente.nombre %></td>
-        <td><%= registro.bultos %></td>
-        <td><%= registro.matriculaCamion %></td>
-        <td><%= registro.matriculaRemolque %></td>
-        <td><%= registro.pesoneto %></td>
-        <td><%= registro.pesobruto %></td>
-        <td><%= registro.procedencia %></td>
-        <td><%= registro.conocimiento %></td>
-        <td><%= registro.precinto1 %></td>
-        <td><%= registro.precinto2 %></td>
-        <td><%= registro.precinto3 %></td>
-        <td><%= registro.flete %></td>
-        <td><%= registro.total %></td>
+      <tr >
+        <td style="border-bottom:1px solid black; padding:1em; width:5%;  text-aling:center;"><%= registro.mostrarNumero %></td>
+        <td style="border-bottom:1px solid black; padding:1em; width:5%;  text-aling:center;"><%= registro.tipo %></td>
+        <td style="border-bottom:1px solid black; padding:1em; width:14%; text-aling:center; "><%= registro.fecha %></td>
+        <td style="border-bottom:1px solid black; padding:1em; width:19%; "><%= registro.cliente.nombre %></td>
+        <td style="border-bottom:1px solid black; padding:1em; width:14%; "></td>
+        <td style="border-bottom:1px solid black; padding:1em; width:14%; "></td>
+        <td style="border-bottom:1px solid black; padding:1em; width:14%; "></td>
         
         
       </tr>
