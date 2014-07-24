@@ -4,4 +4,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   #para usar un layout distinto a aplicacion
   layout "bootstrap"
+
+  before_action :authorize
+
+
+  protected
+  	def authorize
+  		unless User.find_by(id: session[:user_id])
+  			redirect_to login_url, notice: "Por favor introduzca su nombre y contraseña"
+  		end
+  	end
+
 end

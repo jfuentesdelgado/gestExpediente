@@ -36,6 +36,10 @@
 				<li><%= link_to "Mercancias", mercancias_path %></li>
 				<li><%= link_to "Transitarios", transitarios_path %></li>
 				<li><%= link_to "Cambiar año: Activo #{@year}", changeyear_path %>
+
+				<% if session[:user_id]%>
+				  <li> <%= link_to "Cerrar sesion #{session[:user_name]}", logout_path, method: :delete %></li>
+				<%end%>
 				
 
 				</li>

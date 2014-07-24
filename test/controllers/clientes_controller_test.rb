@@ -19,7 +19,7 @@ class ClientesControllerTest < ActionController::TestCase
 
   test "should create cliente" do
     assert_difference('Cliente.count') do
-      post :create, cliente: {  }
+      post :create, cliente: {:cliente  }
     end
 
     assert_redirected_to cliente_path(assigns(:cliente))
