@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   #para usar un layout distinto a aplicacion
   layout "bootstrap"
 
-  before_action :authorize
+  before_action :authorize, :defaultyear
 
 
   protected
@@ -14,5 +14,13 @@ class ApplicationController < ActionController::Base
   			redirect_to login_url, notice: "Por favor introduzca su nombre y contraseña"
   		end
   	end
+
+  	def defaultyear
+  		if session[:year]==nil  
+	      fecha=Time.new  
+	      session[:year]= fecha.year
+    	end
+    	# @year = session[:year]
+	end
 
 end

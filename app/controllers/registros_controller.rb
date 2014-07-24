@@ -15,11 +15,11 @@ class RegistrosController < ApplicationController
   # GET /registros.json
   def index
 
-    if session[:year]==nil  
-      fecha=Time.new  
-      session[:year]= fecha.year
-    end
-    @year = session[:year]
+    # if session[:year]==nil  
+    #   fecha=Time.new  
+    #   session[:year]= fecha.year
+    # end
+    # @year = session[:year]
 
     @clientes= Cliente.all
     @mercancias = Mercancia.all
